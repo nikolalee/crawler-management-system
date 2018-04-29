@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<nav>
+  		<a href="#">crawl management dashboard</a>
+  	</nav>
+  	<div id="new-project">
+  		<label for="web" class="label-font">website</label>
+  		<select id="web">
+  			<option>douban</option>
+  			<option>huanqiu</option>
+  			<option>xiaomi</option>
+  		</select>
+  		<label for="name" class="label-font">project name</label>
+  		<input type="text" id="name" palceholder="enter a project name..." />
+  		<label for="url" class="label-font">url</label>
+  		<input type="text" id="url" placeholder="enter a url..." />
+  		<a id="create">create</a>
+  	</div>
+  	
+  	<div id="running-project">
+  		<div class="title"><div>running project</div></div>
+  		<div id="head">
+	  		<ul class="ul_item ">
+	  			<li class="item title_color" ><span>website</span></li>
+	  			<li class="item title_color" ><span>project name</span></li>
+	  			<li class="item title_color" ><span>status</span></li>
+	  			<li class="item title_color" ><span> progress</span></li>
+	  			<li class="item title_color" ><span>log</span></li>
+	  			<li class="item title_color" ><span>action</span></li>
+	  			<li class="item title_color" ><span>results</span></li>
+	  		</ul>
+  		</div>
+  		<div id="items">
+  			<div class="item-box">
+	  		<ul class="ul_item">
+	  			<li class="item item_color" ><span>douban</span></li>
+	  			<li class="item item_color" ><span class="pro-name">tes</span></li>
+	  			<li class="item item_color" ><span>status</span></li>
+	  			<li class="item item_color" ><span>progress</span></li>
+	  			<li class="item item_color" >
+	  				<span class="log_toggle">log</span>
+	  			</li>
+	  			<li class="item item_color" >
+	  				<span class="action run">run</span>
+	  				<span class="action stop">stop</span>
+	  				<span  class="action del">del</span>
+	  			</li>
+	  			<li class="item item_color" >
+	  				<span  class="results " >results</span>
+	  			</li>
+	  		</ul>
+	  		<div class="log" ></div>
+  		</div>
+  		</div>
+  		
+  	</div>
+  	<div id="recent-project">
+  		<div class="title"><div>todo project</div></div>
+  		<div id="head">
+	  		<ul class="ul_item ">
+	  			<li class="item title_color" ><span>website</span></li>
+	  			<li class="item title_color" ><span>project name</span></li>
+	  			<li class="item title_color" ><span>status</span></li>
+	  			<li class="item title_color" ><span>progress</span></li>
+	  			<li class="item title_color" ><span>log</span></li>
+	  			<li class="item title_color" ><span>action</span></li>
+	  			<li class="item title_color" ><span>results</span></li>
+	  		</ul>
+	  		<div class="log"></div>
+  		</div>
+  		<div id="todoArea">
+  			
+  		</div>
+  	</div>
+  	<div id="shadow">
+  		<div id="alert">
+  			<div id="alert-btn">
+  				<span>Sure to delete?</span>
+  				<div>
+  					<span class="del-btn" id="yes">yes</span>
+  					<span class="del-btn" id="no">no</span>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+  	<script src="/javascripts/jquery-3.2.1.js"></script>
+  	<script src="/javascripts/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/results.css' />
+  </head>
+  <body>
+  	<nav>
+  		<a href="http://localhost:3000">crawl management dashboard</a>
+  	</nav>
+  	<div id="box">
+      <div id="head">
+        <!-- <ul>
+          <li><span>title</span></li>
+          <li><span>author</span></li>
+          <li><span>url</span></li>
+          <li><span>time</span></li>
+          <li><span>details</span></li>
+        </ul> -->
+      </div>
+      <% for(var i = 0;i < data.length;i++){ %>
+      <ul>
+       <!--  <li><span>title</span></li>
+        <li><span>url</span></li> -->
+        <li><span class="title"><%= data[i].user_name %></span></li>
+        <li><span><%= data[i].comment_time %></span></li>
+        <li><span  class="details">details</span></li>
+      </ul> 
+      <% } %>
+    </div>
+  	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  	<script src="/javascripts/results.js"></script>
+  </body>
+</html>

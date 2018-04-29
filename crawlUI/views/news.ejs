@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/news.css' />
+  </head>
+  <body>
+  	<nav>
+  		<a id="home" href="http://localhost:3000">crawl management dashboard</a>
+      <ul>
+        <li><a href="http://localhost:3000/forum">forum<a></li>
+        <li><a href="http://localhost:3000/comment">comment</a></li>
+      </ul>
+  	</nav>
+  	<div id="box">
+      <div class="title"><div>news crawler setting</div></div>
+      <div class="item-box">
+        <div class="enter-box">
+            <label>project name</label>
+            <input type="text" placeholder="如: 水利网站爬虫" id="crawler-name" class="enter front"/>
+           
+                <label>起始网址</label>
+                <input type="text" id="crawler-url" value="http://mobile.163.com/" class="enter"/>
+        </div>
+        <div class="enter-box">
+            <label>title css样式选择器</label>
+            <input type="text" value="#epContentLeft > h1" id="title-css" class="enter front"/>
+                <label>next page css样式选择器</label>
+                <input type="text" value="body > div.index2016_wrap > div.ne-area > div.area.clearfix > div.msg_list > div > div.newsdata_wrap > a:nth-child(3)"  id="nextpage-css" class="enter"/>
+        </div>
+        <div class="enter-box">
+            <label>href css样式选择器</label>
+            <input type="text" value="body > div.index2016_wrap > div.ne-area > div.area.clearfix > div.msg_list > div > div.newsdata_wrap > ul > li > div>h3>a" id="href-css" class="enter front"/>
+                <label>time css样式选择器</label>
+                <input type="text" value="#epContentLeft > div.post_time_source"  id="time-css" class="enter"/>
+        </div>
+        <div class="enter-box">
+            <label>src css样式选择器</label>
+            <input type="text" value="#ne_article_source" id="src-css" class="enter front"/>
+                <label>content css样式选择器</label>
+                <input type="text" value="#endText"  id="content-css" class="enter"/>
+        </div>
+
+      </div>
+      <div id="nextpage-format">
+        <span>nextpage format:</span>
+        <input type="checkbox" value="click" name="format" id="click" />
+        <label for="click">click</label>
+        <input type="checkbox" value="move" name="format" id="move" />
+        <label for="move">move</label>
+      </div>
+      <span id="start">start</span>
+    </div>
+  	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  	<script src="/javascripts/news.js"></script>
+  </body>
+</html>

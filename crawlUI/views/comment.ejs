@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/comment.css' />
+  </head>
+  <body>
+  	<nav>
+  		<a id="home" href="http://localhost:3000">crawl management dashboard</a>
+      <ul>
+        <li><a href="http://localhost:3000/">news<a></li>
+        <li><a href="http://localhost:3000/forum">forum</a></li>
+      </ul>
+  	</nav>
+  	<div id="box">
+      <div class="title"><div>news crawler setting</div></div>
+      <div class="item-box">
+        <div class="enter-box">
+            <label>url</label>
+            <input type="text" placeholder="如: 水利网站爬虫" id="crawler-name" class="enter front"/>
+           
+                <label>起始网址</label>
+                <input type="text" id="crawler-url" value="http://www.scwater.gov.cn/" class="enter"/>
+        </div>
+        <div class="enter-box">
+            <label>title css样式选择器</label>
+            <input type="text" placeholder="" id="title-css" class="enter front"/>
+                <label>next page css样式选择器</label>
+                <input type="text" placeholder="next page"  id="nextpage-css" class="enter"/>
+        </div>
+        <div class="enter-box">
+            <label>href css样式选择器</label>
+            <input type="text" placeholder="href" id="href-css" class="enter front"/>
+                <label>time css样式选择器</label>
+                <input type="text" placeholder="time"  id="time-css" class="enter"/>
+        </div>
+        <div class="enter-box">
+            <label>src css样式选择器</label>
+            <input type="text" placeholder="src css" id="src-css" class="enter front"/>
+                <label>content css样式选择器</label>
+                <input type="text" placeholder="content css"  id="content-css" class="enter"/>
+        </div>
+      </div>
+    </div>
+  	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  	<script src="/javascripts/index.js"></script>
+  </body>
+</html>
