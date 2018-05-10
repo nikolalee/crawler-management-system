@@ -3,7 +3,7 @@
 # Created on __DATE__
 # Project: __PROJECT_NAME__
 
-name = '__PROJECT_NAME__'
+project_name = '__PROJECT_NAME__'
 start_url = '__START_URL__'
 title_css = '__TITLE_CSS__'
 nextpage_css = '__NEXTPAGE_CSS__'
@@ -74,10 +74,11 @@ class Handler(BaseHandler):
         result['time'] = response.doc(time_css).text()
         print(result['time'])
         contentArea = response.doc(content_css)
-        result['content'] = '';
-        ps = contentArea('p').items()
-        for item in ps:
-            result['content'] += item.text()
+        result['content'] = response.doc(content_css).text();
+        if result['content'] == "":
+            ps = contentArea('p').items()
+            for item in ps:
+                result['content'] += item.text()
         result["crawl_time"] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
         self.on_result(result)
 

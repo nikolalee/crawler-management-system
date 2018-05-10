@@ -1,21 +1,31 @@
 $(document).ready(function(){
     
-    var url = $('#crawler-url').val();
-    var title_css = $('#title-css').val();
-    var nextpage_css = $('#nextpage-css').val();
-    var href_css = $('#href-css').val();
-    var time_css = $('#time-css').val();
-    var src_css = $('#src-css').val();
-    var content_css = $('#content-css').val();
-    var move = $('#move').val();
-    var click = $('#click').val();
-    var nextpage_format = "";
-    var name = "";
     
+    var name = "";
+    var url;
+    var title_css;
+    var nextpage_css;
+    var href_css;
+    var time_css;
+    var src_css;
+    var content_css;
+    var move;
+    var click;
+    var nextpage_format;
     // var nextpage_format = $('input[name="format"]:checked').eq(0).val();
     var btn = $('#start');
     
     btn.on('click',function(){
+        url = $('#crawler-url').val();
+        title_css = $('#title-css').val();
+        nextpage_css = $('#nextpage-css').val();
+        href_css = $('#href-css').val();
+        time_css = $('#time-css').val();
+        src_css = $('#src-css').val();
+        content_css = $('#content-css').val();
+        move = $('#move').val();
+        click = $('#click').val();
+        nextpage_format = "";
         if($('#click').is(':checked')){
             nextpage_format = click;
         }else if($('#move').is(':checked')){
@@ -36,8 +46,11 @@ $(document).ready(function(){
                 },
                 success:function(e){
                     console.log(e);
+                    window.localStorage.setItem(name, "news");
                     run(name);
-                    window.location = 'http://localhost:3000/index';
+                    setTimeout(function(){
+                        window.location = 'http://localhost:3000/index';
+                    },1000);
                 },
                 error:function(e){
                     console.log(e);
@@ -50,8 +63,18 @@ $(document).ready(function(){
     function isEmpty(){
         if(name ==""||url==""||title_css==""||nextpage_css==""||href_css==""||time_css==""||
             src_css==""||content_css==""||nextpage_format==""){
+            console.log(name);
+        console.log(url);
+        console.log(title_css);
+        console.log(nextpage_css);
+        console.log(href_css);
+        console.log(src_css);
+        console.log(time_css);
+        console.log(content_css);
+        console.log(nextpage_format);
             return 1;
         }else{
+
             return 0;
         }
     } 
@@ -80,7 +103,7 @@ $(document).ready(function(){
                             }
                         })
                     }
-                },500);
+                },1000);
                 
 
             }

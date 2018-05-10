@@ -23,7 +23,7 @@ try:
 except ImportError:
     from flask.ext import login
 
-from pyspider.libs import utils, sample_handler, dataurl, news
+from pyspider.libs import utils, sample_handler, dataurl, news, comment, forum
 from pyspider.libs.response import rebuild_response
 from pyspider.processor.project_module import ProjectManager, ProjectFinder
 from .app import app
@@ -38,6 +38,8 @@ default_task = {
 }
 default_script = inspect.getsource(sample_handler)
 default_script_news = inspect.getsource(news)
+default_script_comment = inspect.getsource(comment)
+
 
 
 @app.route('/debug/<project>', methods=['GET', 'POST'])
@@ -91,18 +93,35 @@ def spiderweb_debug_get_script_save(project):
                       .replace('__SRC_CSS__', request.values.get('src_css') or '__SRC_CSS__')
                       .replace('__CONTENT_CSS__', request.values.get('content_css') or '__CONTENT_CSS__')
                       .replace('__NEXTPAGE_FORMAT__', request.values.get('nextpage_format') or '__NEXTPAGE_FORMAT__'))
-        #elif web_type == "huanqiu":
-        #    script = (default_script_huanqiu
-         #             .replace('__DATE__', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-          #            .replace('__PROJECT_NAME__', project)
-           #           .replace('__START_URL__', request.values.get('start-url') or '__START_URL__'))
+        elif web_type == "comment":
+           script = (default_script_comment
+                     .replace('__DATE__', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                     .replace('__PROJECT_NAME__', project)
+                     .replace('__START_URL__', request.values.get('start_url') or '__START_URL__')
+                     .replace('__NEXTPAGE_TAG__',request.values.get('nextpage_tag') or '__NEXTPAGE_TAG__')
+                     .replace('__NEXTPAGE_NAME__',request.values.get('nextpage_name') or '__NEXTPAGE_NAME__')
+                     .replace('__COMMENT_BOX_CSS__',request.values.get('comment_box_css') or '__COMMENT_BOX_CSS__')
+                     .replace('__COMMENT_AUTHOR_CSS__',request.values.get('comment_author_css') or '__COMMENT_AUTHOR_CSS__')
+                     .replace('__TIME_CSS__',request.values.get('time_css') or '__TIME_CSS__')
+                     .replace('__CONTENT_CSS__',request.values.get('content_css') or '__CONTENT_CSS__')
+                     .replace('__HAS_RE_CONTENT_CSS__',request.values.get('has_re_content_css') or '__HAS_RE_CONTENT_CSS__')
+                     .replace('__VOTE_CSS__',request.values.get('vote_css') or '__VOTE_CSS__')
+                     .replace('__RESPONSE_TYPE__',request.values.get('response_type') or '__RESPONSE_TYPE__')
+                     .replace('__RESPONSE_CSS__',request.values.get('response_css') or '__RESPONSE_CSS__')
+                     .replace('__RESPONSE_BOX_CSS__',request.values.get('response_box_css') or '__RESPONSE_BOX_CSS__')
+                     .replace('__RES_USER_CSS__',request.values.get('res_user_css') or '__RES_USER_CSS__')
+                     .replace('__RES_TIME_CSS__',request.values.get('res_time_css') or '__RES_TIME_CSS__')
+                     .replace('__RES_CONTENT_CSS__',request.values.get('res_content_css') or '__RES_CONTENT_CSS__')
+                     .replace('__IFRAME_ID__',request.values.get('iframe_id ') or '__IFRAME_ID__')
+                     .replace('__IS_IFRAME__',request.values.get('isIframe') or '__IS_IFRAME__')
+                     .replace('__MORE_TYPE__',request.values.get('more_type') or '__MORE_TYPE__')
+                     .replace('__DEEP_NUM__',request.values.get('deep_num') or '__DEEP_NUM__')
+                     .replace('__STEP__',request.values.get('step') or '__STEP__'))
        # else:
         #    script = (default_script_xiaomi
          #             .replace('__DATE__', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
           #            .replace('__PROJECT_NAME__', project)
            #           .replace('__START_URL__', request.values.get('start-url') or '__START_URL__'))
-
-
     taskid = request.args.get('taskid')
     if taskid:
         taskdb = app.config['taskdb']

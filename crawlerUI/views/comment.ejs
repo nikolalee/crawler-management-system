@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/comment.css' />
+  </head>
+  <body>
+  	<nav>
+  		<a id="home" href="http://localhost:3000">CRAWL MANAGEMENT DASHBOARD</a>
+      <ul>
+        <li><a href="http://localhost:3000/">NEWS<a></li>
+        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+      </ul>
+  	</nav>
+  	<div id="box">
+      <div class="title"><div>common  setting</div></div>
+      <div class="item-box">
+        <ul class="enter-box">
+          <li>
+            <label for="crawler-name">爬虫:</label><input type="text" id="crawler-name" value="comment_sohu" />
+            <label for="crawler-url">起始网址:</label><input type="text" id="crawler-url" value="https://www.sohu.com/a/230834733_115565?_f=index_news_19" />
+          </li>
+          <li>
+            <label for="nextpage-css">next page css样式选择器:</label><input type="text" id="nextpage-css" value="#mpbox > div.c-comment-content > div > div.c-comment-more" />
+            <label for="nextpage-name">next page name:</label><input type="text" id="nextpage-name" value="#" />
+          </li>
+          <li>
+            <label for="crawler-depth">crawl depth:</label><input type="text" id="crawler-depth" value="4" />
+            <label for="step" title="it's the page step.">step:</label><input type="text" id="step" value="0" />
+            
+            
+          </li>
+          <li>
+            <label for="isIframe">isIframe:</label>
+            <select id="isIframe">
+              <option>no</option>
+              <option>yes</option>
+            </select>
+            <label for="iframe-id">iframe id:</label><input type="text" id="iframe-id" value="#" />
+          </li>
+          <li>
+            <label for="more-type">more type:</label>
+            <select id="more-type">
+              <option>more_click</option>
+              <option>more_move</option>
+              <option>more_list</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+      <div class="title comment"><div>comment setting</div></div>
+      <div class="item-box">
+        <ul class="enter-box">
+          <li>
+            <label for="comment-box-css">comment box css:</label><input type="text" id="comment-box-css" value="#mpbox > div.c-comment-content > div > div.c-comment-main > div" />
+            <label for="comment-author-css">comment author css:</label><input type="text" id="comment-author-css" value="div.c-item-content > div.c-item-info.clear > div" />
+          </li>
+          <li>
+            <label for="time-css">time css:</label><input type="text" id="time-css" value="div.c-item-content > div.c-user-content > div.c-controller > div" />
+            <label for="content-css">content css:</label><input type="text" id="content css" value="div.c-item-content > div.c-user-content > div.c-discuss" />
+          </li>
+          <li>
+            <label for="has-re-content-css">has res content css:</label><input type="text" id="has-re-content-css" value="div.c-item-content > div.c-user-content > div.c-discuss" />
+            <label for="vote-css">vote css:</label><input type="text" id="vote-css" value="div.c-item-content > div.c-user-content > div.c-controller > a.c-thumb" />
+          </li>
+          <li>
+            <label for="response-type">response type:</label>
+            <select id="response-type">
+              <option>before</option>
+              <option>after</option>
+            </select>
+            <label for="response-css ">response css:</label><input type="text" id="response-css " value="div.c-item-content > div.c-make-floor > div > div.c-floor-content > div.c-floor-discuss" />
+          </li>
+        </ul>
+      </div>
+      <div id="response-box">
+        <div class="title response"><div>response  setting</div></div>
+        <div class="item-box">
+          <ul class="enter-box">
+            
+            <li>
+              <label for="response-box-css">response box css:</label><input type="text" id="response-box-css" value="#" />
+              <label for="res-user-css ">res user css:</label><input type="text" id="res-user-css " value="#" />
+            </li>
+            <li>
+              <label for="res-time-css">res time css:</label><input type="text" id="res-time-css" value="#" />
+              <label for="res-content-css ">res content css:</label><input type="text" id="res-content-css " value="#" />
+            </li>
+          </ul>
+        </div>
+      </div>
+      <span id="start">start</span>
+    </div>
+  	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  	<script src="/javascripts/comment.js"></script>
+  </body>
+</html>

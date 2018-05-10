@@ -20,33 +20,33 @@
             <input type="text" placeholder="如: 水利网站爬虫" id="crawler-name" class="enter front"/>
            
                 <label>起始网址</label>
-                <input type="text" id="crawler-url" value="http://mobile.163.com/" class="enter"/>
+                <input type="text" id="crawler-url" placeholder="http://mobile.163.com/" class="enter"/>
         </div>
         <div class="enter-box">
             <label>title css样式选择器</label>
-            <input type="text" value="#epContentLeft > h1" id="title-css" class="enter front"/>
+            <input type="text" placeholder="#epContentLeft > h1" id="title-css" class="enter front"/>
                 <label>next page css样式选择器</label>
-                <input type="text" value="body > div.index2016_wrap > div.ne-area > div.area.clearfix > div.msg_list > div > div.newsdata_wrap > a:nth-child(3)"  id="nextpage-css" class="enter"/>
+                <input type="text" placeholder="body > div.index2016_wrap > div.ne-area > div.area.clearfix > div.msg_list > div > div.newsdata_wrap > a:nth-child(3)"  id="nextpage-css" class="enter"/>
         </div>
         <div class="enter-box">
             <label>href css样式选择器</label>
-            <input type="text" value="body > div.index2016_wrap > div.ne-area > div.area.clearfix > div.msg_list > div > div.newsdata_wrap > ul > li > div>h3>a" id="href-css" class="enter front"/>
+            <input type="text" placeholder="body > div.index2016_wrap > div.ne-area > div.area.clearfix > div.msg_list > div > div.newsdata_wrap > ul > li > div > div > div > div.news_title > h3 > a" id="href-css" class="enter front"/>
                 <label>time css样式选择器</label>
-                <input type="text" value="#epContentLeft > div.post_time_source"  id="time-css" class="enter"/>
+                <input type="text" placeholder="#epContentLeft > div.post_time_source"  id="time-css" class="enter"/>
         </div>
         <div class="enter-box">
             <label>src css样式选择器</label>
-            <input type="text" value="#ne_article_source" id="src-css" class="enter front"/>
+            <input type="text" placeholder="#ne_article_source" id="src-css" class="enter front"/>
                 <label>content css样式选择器</label>
-                <input type="text" value="#endText"  id="content-css" class="enter"/>
+                <input type="text" placeholder="#endText"  id="content-css" class="enter"/>
         </div>
 
       </div>
       <div id="nextpage-format">
         <span>nextpage format:</span>
-        <input type="checkbox" value="click" name="format" id="click" />
+        <input type="checkbox" value="click" id="click" />
         <label for="click">click</label>
-        <input type="checkbox" value="move" name="format" id="move" />
+        <input type="checkbox" value="move"  id="move" />
         <label for="move">move</label>
       </div>
       <span id="start">start</span>

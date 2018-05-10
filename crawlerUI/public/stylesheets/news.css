@@ -122,7 +122,7 @@ nav ul li a{
 	background-color: skyblue;
 	border-radius: 2px;
 	height: 16px;
-	width: 40px;
+	width: 60px;
 	line-height: 16px;
 	text-align: center;
 	color: #fff;
@@ -131,7 +131,7 @@ nav ul li a{
 	position: absolute;
 	bottom: 40px;
 	left: 50%;
-	margin-left: -20px;
+	margin-left: -30px;
 }
 #start:hover{
 	background-color: blue;
