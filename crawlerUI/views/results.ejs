@@ -6,7 +6,12 @@
   </head>
   <body>
   	<nav>
-  		<a href="http://localhost:3000">crawl management dashboard</a>
+  		<a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
+      <ul>
+        <li><a href="http://localhost:3000/">NEWS<a></li>
+        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
+        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+      </ul>
   	</nav>
   	<div id="box">
       <div id="head">
@@ -22,8 +27,9 @@
       <ul>
        <!--  <li><span>title</span></li>
         <li><span>url</span></li> -->
-        <li><span class="title"><%= data[i].user_name %></span></li>
-        <li><span><%= data[i].comment_time %></span></li>
+        <li><span class="title"><%= data[i].project_name %></span></li>
+        <li><span><%= data[i].news_title %></span></li>
+        <li><span><%= data[i].url %></span></li>
         <li><span  class="details">details</span></li>
       </ul> 
       <% } %>

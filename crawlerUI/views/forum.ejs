@@ -2,47 +2,79 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/forum.css' />
+    <link rel='stylesheet' href='/stylesheets/comment.css' />
   </head>
   <body>
-  	<nav>
-  		<a id="home" href="http://localhost:3000">crawl management dashboard</a>
+    <nav>
+      <a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
       <ul>
-        <li><a href="http://localhost:3000/">news<a></li>
-        <li><a href="http://localhost:3000/comment">comment</a></li>
+        <li><a href="http://localhost:3000/">NEWS<a></li>
+        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
       </ul>
-  	</nav>
-  	<div id="box">
-      <div class="title"><div>news crawler setting</div></div>
+    </nav>
+    <div id="box">
+      <div class="title"><div>common  setting</div></div>
       <div class="item-box">
-        <div class="enter-box">
-            <label>url</label>
-            <input type="text" placeholder="如: 水利网站爬虫" id="crawler-name" class="enter front"/>
-           
-                <label>起始网址</label>
-                <input type="text" id="crawler-url" value="http://www.scwater.gov.cn/" class="enter"/>
-        </div>
-        <div class="enter-box">
-            <label>title css样式选择器</label>
-            <input type="text" placeholder="" id="title-css" class="enter front"/>
-                <label>next page css样式选择器</label>
-                <input type="text" placeholder="next page"  id="nextpage-css" class="enter"/>
-        </div>
-        <div class="enter-box">
-            <label>href css样式选择器</label>
-            <input type="text" placeholder="href" id="href-css" class="enter front"/>
-                <label>time css样式选择器</label>
-                <input type="text" placeholder="time"  id="time-css" class="enter"/>
-        </div>
-        <div class="enter-box">
-            <label>src css样式选择器</label>
-            <input type="text" placeholder="src css" id="src-css" class="enter front"/>
-                <label>content css样式选择器</label>
-                <input type="text" placeholder="content css"  id="content-css" class="enter"/>
-        </div>
+        <ul class="enter-box">
+          <li>
+            <label for="crawler-name">爬虫:</label><input type="text" id="crawler-name" value="forum_tianya" />
+            <label for="crawler-url">起始网址:</label><input type="text" id="crawler-url" value="http://bbs.tianya.cn/list.jsp?item=travel&nextid=1525650064000" />
+          </li>
+          <li>
+            <label for="main-nextpage-css">main next page tag样式选择器:</label><input type="text" id="main-nextpage-css" value="#main > div.short-pages-2.clearfix > div > a" />
+            <label for="nextpage_keyword">nextpage keyword:</label><input type="text" id="nextpage_keyword" value="#" />
+          </li>
+          <li>
+            <label for="main_page_num">main page num:</label><input type="text" id="main_page_num" value="4" />
+            <label for="nextpage-type" title="it's the page step.">nextpage type:</label>
+            <select id="nextpage-type">
+              <option>single_btn</option>
+              <option>btn_list</option>
+            </select>
+          </li>
+        </ul>
       </div>
+      <div class="title comment"><div>main page setting</div></div>
+      <div class="item-box">
+        <ul class="enter-box">
+          <li>
+            <label for="href_css">href css:</label><input type="text" id="href_css" value="#main > div.mt5 > table > tbody > tr > td.td-title.facered > a" />
+            <label for="title_css">title css:</label><input type="text" id="title_css" value="#post_head > h1 > span.s_title > span" />
+          </li>
+          <li>
+            <label for="author_css">author css:</label><input type="text" id="author_css" value="#post_head > div.atl-menu.clearfix.js-bbs-act > div.atl-info > span:nth-child(1) > a" />
+            <label for="publish_time_css">publish time css:</label><input type="text" id="publish_time_css" value="#post_head > div.atl-menu.clearfix.js-bbs-act > div.atl-info > span:nth-child(2)" />
+          </li>
+          <li>
+            <label for="content_css">content css:</label><input type="text" id="content_css" value="#bd > div.atl-main > div.atl-item.host-item > div > div.atl-con-bd.clearfix > div.bbs-content.clearfix" />
+            <label for="main_step">main step:</label><input type="text" id="main_step" value="1" />
+          </li>
+          <li>
+            <label for="sub_page_num">sub page num:</label>
+            <input type="text" id="sub_page_num" value="4" />
+          </li>
+        </ul>
+      </div>
+      <div class="title response"><div>other ties  setting</div></div>
+      <div class="item-box">
+        <ul class="enter-box">
+          <li>
+            <label for="sub_nextpage_tag">sub nextpage tag:</label><input type="text" id="sub_nextpage_tag" value="#bd > div:nth-child(6) > div:nth-child(1) > form > a.js-keyboard-next" />
+            <label for="sub_step">sub step:</label><input type="text" id="sub_step" value="1" />
+          </li>
+          <li>
+            <label for="tie_box_css">tie box css:</label><input type="text" id="tie_box_css" value="#bd > div.atl-main > div" />
+            <label for="tie_user_css ">tie user css:</label><input type="text" id="tie_user_css" value="div.atl-head> div.atl-info > span:nth-child(1) > a" />
+          </li>
+          <li>
+            <label for="tie_time_css">tie time css:</label><input type="text" id="tie_time_css" value="div.atl-head> div.atl-info > span:nth-child(2)" />
+            <label for="tie_content_css ">tie content css:</label><input type="text" id="tie_content_css" value="div.atl-content > div.atl-con-bd.clearfix > div.bbs-content" />
+          </li>
+        </ul>
+      </div>
+      <span id="start">start</span>
     </div>
-  	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-  	<script src="/javascripts/index.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/javascripts/forum.js"></script>
   </body>
 </html>

@@ -39,6 +39,7 @@ default_task = {
 default_script = inspect.getsource(sample_handler)
 default_script_news = inspect.getsource(news)
 default_script_comment = inspect.getsource(comment)
+default_script_forum = inspect.getsource(forum)
 
 
 
@@ -117,11 +118,28 @@ def spiderweb_debug_get_script_save(project):
                      .replace('__MORE_TYPE__',request.values.get('more_type') or '__MORE_TYPE__')
                      .replace('__DEEP_NUM__',request.values.get('deep_num') or '__DEEP_NUM__')
                      .replace('__STEP__',request.values.get('step') or '__STEP__'))
-       # else:
-        #    script = (default_script_xiaomi
-         #             .replace('__DATE__', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-          #            .replace('__PROJECT_NAME__', project)
-           #           .replace('__START_URL__', request.values.get('start-url') or '__START_URL__'))
+        else:
+           script = (default_script_forum
+                     .replace('__DATE__', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                     .replace('__PROJECT_NAME__', project)
+                     .replace('__START_URL__', request.values.get('start_url') or '__START_URL__')
+                     .replace('__MAIN_NEXTPAGE_TAG__',request.values.get('main_nextpage_tag') or '__MAIN_NEXTPAGE_TAG__')
+                     .replace('__NEXTPAGE_KEYWORD__',request.values.get('nextpage_keyword') or '__NEXTPAGE_KEYWORD__')
+                     .replace('__NEXTPAGE_TYPE__',request.values.get('nextpage_type') or '__NEXTPAGE_TYPE__')
+                     .replace('__MAIN_PAGE_NUM__',request.values.get('main_page_num') or '__MAIN_PAGE_NUM__')
+                     .replace('__HREF_CSS__',request.values.get('href_css') or '___HREF_CSS__')
+                     .replace('__TITLE_CSS__',request.values.get('title_css') or '__TITLE_CSS__')
+                     .replace('__AUTHOR_CSS__',request.values.get('author_css') or '__AUTHOR_CSS__')
+                     .replace('__PUBLISH_TIME_CSS__',request.values.get('publish_time_css') or '__PUBLISH_TIME_CSS__')
+                     .replace('__CONTENT_CSS__',request.values.get('content_css') or '__CONTENT_CSS__')
+                     .replace('__MAIN_STEP__',request.values.get('main_step') or '__MAIN_STEP__')
+                     .replace('__SUB_PAGE_NUM__',request.values.get('sub_page_num') or '__SUB_PAGE_NUM__')
+                     .replace('__SUB_NEXTPAGE_TAG__',request.values.get('sub_nextpage_tag') or '__SUB_NEXTPAGE_TAG__')
+                     .replace('__TIE_BOX_CSS__',request.values.get('tie_box_css') or '__TIE_BOX_CSS__')
+                     .replace('__TIE_USER_CSS__',request.values.get('tie_user_css') or '__TIE_USER_CSS__')
+                     .replace('__TIE_TIME_CSS__',request.values.get('tie_time_css') or '__TIE_TIME_CSS__')
+                     .replace('__TIE_CONTENT_CSS__',request.values.get('tie_content_css') or '__TIE_CONTENT_CSS__')
+                     .replace('__SUB_STEP__',request.values.get('sub_step') or '__SUB_STEP__'))
     taskid = request.args.get('taskid')
     if taskid:
         taskdb = app.config['taskdb']

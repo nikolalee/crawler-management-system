@@ -14,31 +14,52 @@ body {
 nav{
 	width: 100%;
 	height: 40px;
-	background-color: #051c2f;
+	background-color: #3c8dbc;
 }
-nav a{
-	font-size: 14px;
-	color: gray;
+#home{
+	display: inline-block;
+	font-size: 18px;
+	color: #fff;
 	line-height: 40px;
 	margin-left: 20px;	
 }
+nav ul{
+	float: right;
+	height: 100%;
+	margin-right: 40px;
+}
+nav ul li{
+	float: right;
+	list-style: none;
+	height: 40px;
+	width: 80px;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+	color: #fff;
+}
+nav ul li:hover{
+	background-color: #fff;
+	color: #000;
+}
+nav ul li a{
+	display: inline-block;
+	color: inherit;
+}
 #box{
-	/* position:absolute; */
-	/* top: 40px; */
-	/* bottom: 0; */
-	/* left: 0; */
+	
 	width: 100%;
 	height: auto;
 	padding: 20px;
-	background-color: pink;
+	background-color: #fff;
 	box-sizing: border-box;
 }
 #box ul{
 	width: 100%;
 	height: 32px;
 	line-height: 32px;
-	background-color: #de909e;
-	border-radius: 2px;
+	background-color: #daced0;
+	/* border-radius: 2px; */
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
@@ -50,8 +71,8 @@ nav a{
 	height: 28px;
 	line-height: 28px;
 	text-align: center;
-	border-radius: 2px;
-	background-color: #defa87;
+	/* border-radius: 2px; */
+	background-color: #d9e5ec;
 	/* border-right:1px solid pink; */
 }
 .details{
@@ -64,4 +85,7 @@ nav a{
 	color: #fff;
 	border-radius: 2px;
     cursor:pointer;
+}
+.details:hover{
+	background-color: #0e860e;
 }

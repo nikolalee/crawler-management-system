@@ -25,12 +25,8 @@ $(document).ready(function(){
         content_css = $('#content-css').val();
         move = $('#move').val();
         click = $('#click').val();
-        nextpage_format = "";
-        if($('#click').is(':checked')){
-            nextpage_format = click;
-        }else if($('#move').is(':checked')){
-            nextpage_format = move;
-        }
+        nextpage_format = $("#nextpage-format").val();
+        
         name = $('#crawler-name').val();
         console.log(name);
         var flag = isEmpty();
@@ -96,10 +92,14 @@ $(document).ready(function(){
                             type:"POST",
                             data:{'project':name},
                             success:function(item){
+                                localStore(name,"news");
+                                setTimeout(function(){
+                                    window.location = 'http://localhost:3000/index';
+                                },2000)
                                 console.log(item);
                             },
                             error:function(e){
-                                console.log(e);
+                                alert("crawler construction failed:\n"+e);
                             }
                         })
                     }
@@ -108,5 +108,8 @@ $(document).ready(function(){
 
             }
         })
+    }
+    function localStore(project,type){
+        window.localStorage.setItem(project, type);
     }
 })

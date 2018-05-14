@@ -4,6 +4,7 @@ var mysql  = require('mysql');
 /* GET result page. */
 router.get('/', function(req, res, next) {
 	project = req.query.project;
+	type = req.query.type;
 	var connection = mysql.createConnection({     
 	  host     : 'localhost',       
 	  user     : 'repository',              
@@ -17,7 +18,16 @@ router.get('/', function(req, res, next) {
 	    }
     	console.log('[connection connect]  succeed!');
 	});
-	var sql = 'SELECT * FROM douban';
+	if(type == "news"){
+		var sql = 'SELECT * FROM news';
+	}else if(type == "comment"){
+		var sql = 'SELECT * FROM comments2';
+	}else if(type == "forum"){
+		var sql = 'SELECT * FROM forum';
+	}else{
+		return;
+	}
+	
 	connection.query(sql,function (err, result) {
         if(err){
           console.log('[SELECT ERROR] - ',err.message);

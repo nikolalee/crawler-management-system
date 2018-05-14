@@ -51,40 +51,15 @@ $(document).ready(function(){
 		var target = $(event.target);
 		var oDiv = target.parent().parent().parent();
 		var name = oDiv.find('.pro-name').eq(0).html();
-		console.log(name);
-		getResults(name);
-	})
-	//bind create event
-	newProject.click(function(){
-		var web = $('#web').val();
-		var name = $('#name').val();
-		var oriUrl = $('#url').val();
-		// console.log(name);
-		// console.log(oriUrl);
-		if(name ===""||oriUrl===""){
-			alert('empty not allowed.');
-			return;
+		var type = window.localStorage.getItem(name);
+		//for test
+		if(!type){
+			type = "news";
 		}
-		var url1 = "http://localhost:5000/debug/"+name+"/get_script_save";
-		$.ajax({
-			url:url1,
-			type:"GET",
-			// async:false, 
-			// dataType:"jsonp",
-			// jsonp:"callback",
-			// jsonpCallback:"successCallback",
-			data:{'start-url':oriUrl,'web-type':web},
-			success:function(e){
-				console.log(e);
-				localStore(name,web);
-				run(name);
-				get_info();
-			},
-			error:function(e){
-				console.log("fail:"+e);
-			}
-		})
+		console.log(name);
+		getResults(name,type);
 	})
+	
 	function get_info(){
 		// var item = [];
 		$.ajax({
@@ -148,36 +123,6 @@ $(document).ready(function(){
   		'</div>';
   		todoArea.append(appendPart);
 	}
-	function run(name){
-		var url1 = 'http://localhost:5000/spiderweb/run';
-		console.log(url1);
-		$.ajax({
-			url:'http://localhost:5000/update',
-			type:'POST',
-			data:{'pk':name,'name':'status','value':'RUNNING'},
-			success:function(item){
-				var data = JSON.parse(item);
-				console.log(data);
-				console.log(1);
-				setTimeout(function(){
-					if(data.code === 200){
-						$.ajax({
-							url:url1,
-							type:"POST",
-							data:{'project':name},
-							success:function(item){
-								get_info();
-								console.log(item);
-							},
-							error:function(e){
-								console.log(e);
-							}
-						})
-					}
-				},500);
-			}
-		})
-	}
 	function stop(name){
 		var url1 = 'http://localhost:5000/'+name+'/run';
 		$.ajax({
@@ -191,8 +136,8 @@ $(document).ready(function(){
 			}
 		})
 	}
-	function getResults(name){
-		var url = "http://localhost:3000/results?project="+name;
+	function getResults(name,type){
+		var url = "http://localhost:3000/results?project="+name+"&type="+type;
 		location.href = url;
 	}
 	function del(name){

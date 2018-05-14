@@ -6,7 +6,8 @@ a{
 	text-decoration: none
 }
 li{
-	display: inline-block;
+	/* display: inline-block; */
+	list-style: none;
 }
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -14,12 +15,12 @@ body {
 nav{
 	width: 100%;
 	height: 40px;
-	background-color: #051c2f;
+	background-color: #3c8dbc;
 }
 #home{
 	display: inline-block;
-	font-size: 14px;
-	color: #ff4747;
+	font-size: 18px;
+	color: #fff;
 	line-height: 40px;
 	margin-left: 20px;	
 }
@@ -29,7 +30,7 @@ nav ul{
 	margin-right: 40px;
 }
 nav ul li{
-	/* float: right; */
+	float: right;
 	list-style: none;
 	height: 40px;
 	width: 80px;
@@ -59,20 +60,20 @@ nav ul li a{
 .title{
 	width: 100%;
 	height: 24px;
-	background-color: pink;
+	background-color: #eac4cb;
 }
 .title div{
 	width: 200px;
 	height: 24px;
 	line-height: 24px;
-	background-color: lightgreen;
+	background-color: #adb9ad;
 	text-align: center;
 	color: #fff;
 }
-#item-box{
+.item-box{
 	width: 100%;
 	height: auto;
-	background-color: lightslategray;
+	/* background-color: lightslategray; */
 }
 
 .enter-box{
@@ -80,10 +81,41 @@ nav ul li a{
     margin:10px 0;
     /*vertical-align: middle;*/
     display:block;
-    overflow: hidden;
+    /* overflow: hidden; */
     zoom:1;
     clear:both;
     /*margin:0 auto;*/
+}
+.enter-box li{
+	width: 100%;
+	height: 32px;
+	color: #333;
+	margin: 16px 0;
+}
+.enter-box li label{
+	display: inline-block;
+	height: 32px;
+	width: 13%;
+	font-size: 14px;
+	text-align: center;
+}
+.enter-box li input{
+	display: inline-block;
+	color: #666666;
+	border: 1px solid #d9d9d9;
+	height: 32px;
+	width: 35%;
+	text-indent: 4px;
+	outline: none;
+}
+.enter-box select{
+	display: inline-block;
+	color: #666666;
+	border: 1px solid #d9d9d9;
+	height: 32px;
+	width: 35%;
+	text-indent: 4px;
+	outline: none;
 }
 .item-box label{
     display:inline-block;
@@ -92,47 +124,45 @@ nav ul li a{
     /*text-align:right;*/
     margin-right:10px;
 }
-.enter{
-    height:30px;
-    width:33%;
-}
+
 .item-box input{
-    border-radius:4px;
-    border:1px solid #d0d0d0;
+    /* border-radius:4px; */
+    text-shadow: none;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    box-sizing: border-box;
+    border:0px solid #d0d0d0;
     display:inline-block;
-    width: 240px;
+    /* width: 240px; */
 }
 .item-box input::-webkit-input-placeholder { /* WebKit browsers */ 
 	font-size: 12px;
 	color: #999; 
 	text-indent: 12px;
 } 
-.front{
-    margin-right:10px;
-}
-#nextpage-format{
-	margin-top: 20px;
-}
-#nextpage-format input{
-	margin-left: 25px;
-}
+
 #start{
 	padding:6px ;
-	display: inline-block;
+	display: block;
 	background-color: skyblue;
 	border-radius: 2px;
-	height: 16px;
-	width: 60px;
-	line-height: 16px;
+	height: 24px;
+	width: 100px;
+	line-height: 24px;
 	text-align: center;
 	color: #fff;
 	margin: 20px auto;
+	font-size: 20px;
 	cursor: pointer;
-	position: absolute;
-	bottom: 40px;
-	left: 50%;
-	margin-left: -30px;
 }
 #start:hover{
 	background-color: blue;
+}
+.comment{
+	background-color: #da9c4f;
+}
+.response{
+	background-color: #6595d0;
+}
+#response-box{
+	display: none;
 }
