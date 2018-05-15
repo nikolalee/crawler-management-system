@@ -138,7 +138,11 @@ $(document).ready(function(){
 	}
 	function getResults(name,type){
 		var url = "http://localhost:3000/results?project="+name+"&type="+type;
-		location.href = url;
+        window.localStorage.setItem("project_name",name);
+        window.localStorage.setItem("project_type",type);
+        setTimeout(function(){
+            location.href = url;
+        },500);
 	}
 	function del(name){
 		var pUrl = "http://localhost:5000/spiderweb/delete";

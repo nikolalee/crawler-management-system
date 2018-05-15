@@ -11,6 +11,10 @@ var forumRouter = require('./routes/forum');
 var usersRouter = require('./routes/users');
 var resultsRouter = require('./routes/results');
 var detailsRouter = require('./routes/details');
+var showRouter = require('./routes/result_show');
+var codeRouter = require('./routes/result_code');
+var downloadRouter = require('./routes/result_download');
+var download = require('./routes/download');
 
 var app = express();
 
@@ -30,7 +34,11 @@ app.use('/comment',commentRouter);
 app.use('/forum',forumRouter);
 app.use('/results',resultsRouter)
 app.use('/users', usersRouter);
-app.use('/details',detailsRouter)
+app.use('/details',detailsRouter);
+app.use('/result_show',showRouter);
+app.use('/result_code',codeRouter);
+app.use('/result_download',downloadRouter);
+app.use('/download',download);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
