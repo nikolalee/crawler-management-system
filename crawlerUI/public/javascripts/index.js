@@ -77,12 +77,13 @@ $(document).ready(function(){
 						// console.log("2");
 						// console.log(data.length);
 						// console.log(data[i]['name']);
-						var web;
+						var web="";
 						if(data[i]['status'] == "RUNNING"){
 							web = window.localStorage.getItem(data[i]['name']);
 							addNodeRun(web,data[i]['name'],data[i]['status']);
 						}else{
 							web = window.localStorage.getItem(data[i]['name']);
+							console.log("web:"+web);
 							addNodeTodo(web,data[i]['name'],data[i]['status']);
 						}
 					}

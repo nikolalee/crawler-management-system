@@ -43,6 +43,9 @@ $(document).ready(function(){
                 success:function(e){
                     console.log(e);
                     window.localStorage.setItem(name, "news");
+                    // var tt = window.localStorage.getItem(name);
+                    // console.log("123456");
+                    // console.log("web:"+tt);
                     run(name);
                     setTimeout(function(){
                         window.location = 'http://localhost:3000/index';
