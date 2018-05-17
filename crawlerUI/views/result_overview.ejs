@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/result_overview.css' />
+  </head>
+  <body>
+  	<nav>
+  		<a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
+      <ul>
+        <li><a href="http://localhost:3000/">NEWS<a></li>
+        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
+        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+      </ul>
+  	</nav>
+    <div class="side">
+      <div class="menu ">主菜单</div>
+      <div class="menu-child" id="overview">总览</div>
+      <div class="menu-child" id="result">爬取结果</div>
+      <div class="menu">开发者</div>
+      <div class="menu-child" id="code">爬虫源码</div>
+      <div class="menu">数据发布&导出</div>
+      <div class="menu-child bottom" id="download">导出到文件</div>
+    </div>
+  	<div id="container">
+      <div class="basic-info">
+            <h3>基本信息</h3>
+            <table>
+                <tr>
+                    <td>
+                        <strong>爬虫名称 : </strong><span id="crawl-name" ><%= name %></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>创建时间 ：</strong><span id="crawl-time" ></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>爬取数据类型 ：</strong><span id="crawl-type" ><%= type %></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="chart-container">
+            <h3>爬取概况</h3>
+                <div id="charts">
+                    <ul id="numbers">
+                        <li><span>100%</span></li>
+                        <li><span>90%</span></li>
+                        <li><span>80%</span></li>
+                        <li><span>70%</span></li>
+                        <li><span>60%</span></li>
+                        <li><span>50%</span></li>
+                        <li><span>40%</span></li>
+                        <li><span>30%</span></li>
+                        <li><span>20%</span></li>
+                        <li><span>10%</span></li>
+                        <li><span>0%</span></li>
+                    </ul>
+                    <ul id="bars">
+                        <li><div :data-percentage="percent[0]" class="bar"></div><span>pending</span></li>
+                        <li><div :data-percentage="percent[1]" class="bar"></div><span>success</span></li>
+                        <li><div :data-percentage="percent[2]" class="bar"></div><span>retry</span></li>
+                        <li><div :data-percentage="percent[3]" class="bar"></div><span>fail</span></li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+  	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  	<script src="/javascripts/result_overview.js"></script>
+  </body>
+</html>
+

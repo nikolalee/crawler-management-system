@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/result_download.css' />
+  </head>
+  <body>
+  	<nav>
+  		<a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
+      <ul>
+        <li><a href="http://localhost:3000/">NEWS<a></li>
+        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
+        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+      </ul>
+  	</nav>
+    <div class="side">
+      <div class="menu ">主菜单</div>
+      <div class="menu-child" id="overview">总览</div>
+      <div class="menu-child" id="result">爬取结果</div>
+      <div class="menu">开发者</div>
+      <div class="menu-child" id="code">爬虫源码</div>
+      <div class="menu">数据发布&导出</div>
+      <div class="menu-child bottom" id="download">导出到文件</div>
+    </div>
+  	<div id="container">
+     
+    <form class="c3-box" action="http://localhost:3000/download" method="GET">
+        <h5>导出文件名:</h5>
+        <input type="text" name="name" value="task_data_796931" placeholder="请输入您要导出的文件名" id="fileName"/>
+        <h5>选择文件格式:</h5>
+        <select name="fileType">
+            <option>json</option>
+            <option>csv</option>
+            <option>txt</option>
+        </select>
+        <h5>爬虫type</h5>
+        <input type="text" name="webType" id="type" />
+        <h5>爬虫name</h5>
+        <input type="text" name="project_name" id="project" />
+        <input type="submit"id="down" value="导出文件"/>
+    </form>
+    </div>
+  	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  	<script src="/javascripts/result_download.js"></script>
+  </body>
+</html>

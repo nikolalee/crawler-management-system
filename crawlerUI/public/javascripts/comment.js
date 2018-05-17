@@ -16,9 +16,10 @@ $(document).ready(function(){
 			alert('there is empty box.');
 			return;
 		}
+		// data['content_css'] = $('#content-css').val();
 		data['crawler_name'] = $('#crawler-name').val();
 		var url1 = 'http://localhost:5000/debug/'+data['crawler_name']+'/get_script_save';
-		console.log(data['crawler_name']);
+		console.log(data);
 		$.ajax({
 			url:url1,
 			type:"POST",
@@ -54,7 +55,8 @@ $(document).ready(function(){
 		 data['comment_box_css'] = $('#comment-box-css').val();
 		 data['comment_author_css'] = $('#comment-author-css').val();
 		 data['time_css'] = $('#time-css').val();
-		 data['content_css'] = $('#cotent-css').val();
+		 data['content_css'] = $('#content-css').val();
+		 console.log(data['content_css']);
 		 data['has_re_content_css'] = $('#has-re-content-css').val();
 		 data['vote_css'] = $('#vote-css').val();
 		 data['response_type'] = $('#response-type').val();

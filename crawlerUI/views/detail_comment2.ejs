@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/detail_comment2.css' />
+  </head>
+  <body>
+  	<nav>
+  		<a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
+      <ul>
+        <li><a href="http://localhost:3000/">NEWS<a></li>
+        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
+        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+      </ul>
+  	</nav>
+    <div id="box">
+      <p class="title">project_name:<span><%= result[0].project_name %></span></p>
+      <p class="title">author:<span><%= result[0].comment_author %></span></p>
+      <p class="title">vote:<span id="src"><%= result[0].vote %></span>time:<span><%= result[0].publish_time %></span></p>
+      <p class="title">crawl time:<span><%= result[0].crawl_time %></span></p>
+      
+      <p class="title text last">content:</p>
+      <div class="content">
+        <%= result[0].content %>
+      </div>
+      <p class="title text">response to:</p>
+      <div class="content">
+        <% for(var i = 0;i < data.length;i++){ %>
+          <ul class="item">
+           <!--  <li><span>title</span></li>
+            <li><span>url</span></li> -->
+            <li class="author"><%= data[i].reply_user %></li>
+            <li><%= data[i].reply_content %></li>
+            <li class="time"><%= data[i].reply_time %></li>
+          </ul> 
+        <% } %> 
+      </div>
+    </div>
+  	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  
+  </body>
+</html>
+

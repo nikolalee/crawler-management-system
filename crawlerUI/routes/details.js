@@ -34,34 +34,38 @@ router.get('/', function(req, res, next) {
   	}else if(type == "comment"){
   		var time = req.query.time;
   		var author = req.query.author;
-  		var sql = "SELECT * FROM comment2 where project_name='"+project+"' and publish_time='"+time+" and comment_author='"+author+"'";
+  		var sql = "SELECT * FROM comments2 where project_name='"+project+"' and publish_time='"+time+"' and comment_author='"+author+"'";
   		connection.query(sql,function (err, result) {
 	        if(err){
 	          console.log('[SELECT ERROR] - ',err.message);
 	          return;
 	        }
-	        if(result[0]){
-	        	if(result[0].response == ""){
-  					var sql2 = "select * from comment_reply where author='"+author+"' and content='"+result[0].content+"'";
-  					connection.query(sql2,function (err, data) {
-				        if(err){
-				          console.log('[SELECT ERROR] - ',err.message);
-				          return;
-				        }
-				       if(data){
-  							res.render('detail_comment2', { title: author,data:data,result:result});
-				       }else{
-				       		res.render('detail_comment1', { title: author,data:result});
-				       }
-					});
+        	if(result[0].response == ""){
+					var sql2 = "select * from comment_reply where author='"+author+"' and content='"+result[0].content+"'";
+					connection.query(sql2,function (err2, data) {
+			        if(err2){
+			          console.log('[SELECT ERROR] - ',err.message);
+			          return;
+			        }
+			        // console.log(len(data));
+			       if(data.length>0){
+							res.render('detail_comment2', { title: author,data:data,result:result});
+			       }else{
+			      
+			        	result[0].response = "null";
+			        	
+			       		res.render('detail_comment1', { title: author,data:result});
+			       }
+				});
 	        	}
-	        }else{
-	 			res.render('detail_comment1', { title: author,data:result});
+	        	else{
+		 			res.render('detail_comment1', { title: author,data:result});
 	        }
+	        
 		});
   	}else if(type == "forum"){
   		var title = req.query.title;
-  		var sql = "SELECT * FROM tie2 where project_name='"+project+"'and title='"+title+"'";
+  		var sql = "SELECT * FROM tie2 where project_name='"+project+"' and title='"+title+"'";
   		connection.query(sql,function (err, result) {
 	        if(err){
 	          console.log('[SELECT ERROR] - ',err.message);
@@ -69,9 +73,9 @@ router.get('/', function(req, res, next) {
 	        }
 	 		if(result[0]){
 	        	if(result[0].response == ""){
-  					var sql2 = "select * from tie_reply where projecct_name='"+project+"'and tie_user='"+result[0].tie_user+"'";
-  					connection.query(sql2,function (err, data) {
-				        if(err){
+  					var sql2 = "select * from tie_reply where projecct_name='"+project+"' and tie_user='"+result[0].tie_user+"'";
+  					connection.query(sql2,function (err2, data) {
+				        if(err2){
 				          console.log('[SELECT ERROR] - ',err.message);
 				          return;
 				        }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/result_show.css' />
+  </head>
+  <body>
+  	<nav>
+  		<a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
+      <ul>
+        <li><a href="http://localhost:3000/">NEWS<a></li>
+        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
+        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+      </ul>
+  	</nav>
+    <div class="side">
+      <div class="menu ">主菜单</div>
+      <div class="menu-child" id="overview">总览</div>
+      <div class="menu-child" id="result">爬取结果</div>
+      <div class="menu">开发者</div>
+      <div class="menu-child" id="code">爬虫源码</div>
+      <div class="menu">数据发布&导出</div>
+      <div class="menu-child bottom" id="download">导出到文件</div>
+    </div>
+  	<div id="container">
+      <% for(var i = 0;i < data.length;i++){ %>
+      <ul class="item">
+       <!--  <li><span>title</span></li>
+        <li><span>url</span></li> -->
+        <li class="title"><%= data[i].news_title %></li>
+        <li><%= data[i].url %></li>
+        <li><%= data[i].publish_time %></li>
+        <li><span  class="details">details</span></li>
+      </ul> 
+      <% } %>
+    </div>
+  	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  	<script src="/javascripts/result_show.js"></script>
+  </body>
+</html>
+

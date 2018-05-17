@@ -113,7 +113,7 @@ def spiderweb_debug_get_script_save(project):
                      .replace('__RES_USER_CSS__',request.values.get('res_user_css') or '__RES_USER_CSS__')
                      .replace('__RES_TIME_CSS__',request.values.get('res_time_css') or '__RES_TIME_CSS__')
                      .replace('__RES_CONTENT_CSS__',request.values.get('res_content_css') or '__RES_CONTENT_CSS__')
-                     .replace('__IFRAME_ID__',request.values.get('iframe_id ') or '__IFRAME_ID__')
+                     .replace('__IFRAME_ID__',request.values.get('iframe_id') or '__IFRAME_ID__')
                      .replace('__IS_IFRAME__',request.values.get('isIframe') or '__IS_IFRAME__')
                      .replace('__MORE_TYPE__',request.values.get('more_type') or '__MORE_TYPE__')
                      .replace('__DEEP_NUM__',request.values.get('deep_num') or '__DEEP_NUM__')

@@ -26,7 +26,7 @@ response_css = '__RESPONSE_CSS__'
 #被他人回复时
 response_box_css = '__RESPONSE_BOX_CSS__'
 res_user_css = '__RES_USER_CSS__'
-res_time_css = '__RES_TIME_CS__'
+res_time_css = '__RES_TIME_CSS__'
 res_content_css = '__RES_CONTENT_CSS__'
 
 #评论在iframe中时，现在只在tencent上看到
@@ -76,7 +76,7 @@ class Handler(BaseHandler):
         for i in range(1,int(deep_num)):
             time.sleep(0.2)
             print("hi"+str(i))
-            driver.find_element_by_css_selector(nextpage_css).click()
+            driver.find_element_by_css_selector(nextpage_tag).click()
             content = driver.page_source.encode('utf-8')
             iframe = pq(content)
             items = iframe(comment_box_css).items()
