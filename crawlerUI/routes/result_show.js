@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 	if(type == "news"){
 		var sql = 'SELECT * FROM news where project_name="'+project+'"';
 	}else if(type == "comment"){
-		var sql = 'SELECT * FROM comments2 where project_name="'+project+'"';
+		var sql = 'SELECT * FROM comments where project_name="'+project+'"';
 	}else if(type == "forum"){
 		var sql = 'SELECT * FROM forum where project_name="'+project+'"';
 	}else{

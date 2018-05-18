@@ -309,15 +309,22 @@ class Handler(BaseHandler):
             print("result is empty")
             return
         print(result)
+        length = len(result['content'])
+        if(length > 127):
+            text = result['content']
+            result['content'] = text[0:127]
+        else:
+            text = ""
         conn = pymysql.connect(host='127.0.0.1', port=3306, user='repository', passwd='repository', db='repository', charset='utf8')
         cur = conn.cursor()
-        cur.execute("select * from comments2 where comment_author = %s and content=%s", (result['comment_author'],result['content']))
+        cur.execute("select * from comments where comment_author = %s and content=%s and publish_time=%s", (result['comment_author'],result['content'],result['time']))
         rows = cur.fetchall()
         if len(rows):
             cur.close()
             conn.close()
             return
-        cur.execute("insert into comments2(project_name,comment_author,publish_time,content,vote,response,crawl_time) values(%s,%s,%s,%s,%s,%s,%s)", (project_name,result['comment_author'],result['time'], result['content'],result['vote'], result['response'],result['crawl_time']))
+       
+        cur.execute("insert into comments(project_name,comment_author,publish_time,content,vote,response,crawl_time,text) values(%s,%s,%s,%s,%s,%s,%s,%s)", (project_name,result['comment_author'],result['time'], result['content'],result['vote'], result['response'],result['crawl_time'],text))
         conn.commit()
         cur.close()
         conn.close()
@@ -326,6 +333,12 @@ class Handler(BaseHandler):
         if not result:
             return
         print(result)
+        length = len(result['res_content'])
+        if(length > 127):
+            text = result['res_content']
+            result['res_content'] = text[0:127]
+        else:
+            text = ""
         conn = pymysql.connect(host='127.0.0.1', port=3306, user='repository', passwd='repository', db='repository', charset='utf8')
         cur = conn.cursor()
         cur.execute("select * from comment_reply where reply_user = %s and reply_content=%s", (result['user'],result['res_content']))
@@ -334,7 +347,7 @@ class Handler(BaseHandler):
             cur.close()
             conn.close()
             return
-        cur.execute("insert into comment_reply(author,content,reply_user,reply_time,reply_content,crawl_time) values(%s,%s,%s,%s,%s,%s)", (result['author'],result['content'],result['user'],result['res_time'], result['res_content'],result['crawl_time']))
+        cur.execute("insert into comment_reply(author,content,reply_user,reply_time,reply_content,crawl_time,text) values(%s,%s,%s,%s,%s,%s,%s)", (result['author'],result['content'],result['user'],result['res_time'], result['res_content'],result['crawl_time'],text))
         conn.commit()
         cur.close()
         conn.close()

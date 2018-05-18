@@ -26,13 +26,14 @@
       <p class="title text">response to:</p>
       <div class="content">
         <% for(var i = 0;i < data.length;i++){ %>
-          <ul class="item">
+          <div class="item">
            <!--  <li><span>title</span></li>
             <li><span>url</span></li> -->
-            <li class="author"><%= data[i].reply_user %></li>
-            <li><%= data[i].reply_content %></li>
-            <li class="time"><%= data[i].reply_time %></li>
-          </ul> 
+            <span class="author">user:  <%= data[i].reply_user %></span>
+            <span class="time">time:  <%= data[i].reply_time %></span>
+            <div><%= data[i].reply_content %></div>
+            
+          </div> 
         <% } %> 
       </div>
     </div>

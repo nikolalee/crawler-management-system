@@ -62,6 +62,7 @@ $(document).ready(function(){
 	
 	function get_info(){
 		// var item = [];
+		window.localStorage.setItem("forum_tianya7", "forum");
 		$.ajax({
 			url:'http://localhost:5000/get_info',
 			type:'POST',

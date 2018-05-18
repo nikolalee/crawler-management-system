@@ -47,11 +47,11 @@ nav ul li a{
 	color: inherit;
 }
 #box{
-	position:absolute;
-	top: 40px;
-	bottom: 0;
-	left: 0;
-	/* height: auto; */
+	/* position:absolute; */
+	/* top: 40px; */
+	/* bottom: 0; */
+	/* left: 0; */
+	height: auto;
 	width: 100%;
 	padding: 30px 60px;
 	background-color: lightslategray;
@@ -88,7 +88,25 @@ div.content{
 }
 .text{
 	width: 15%;
+	margin-top: 20px;
 }
 .last{
 	margin-top: 20px;
+}
+.item{
+	margin-bottom: 20px;
+}
+.author{
+	margin-right: 20px;
+}
+.item span{
+	color: #0d06bbed;
+	display: inline-block;
+	margin-bottom: 10px;
+	text-indent: 0;
+}
+.item div{
+	width: 600px;
+	padding-bottom: 10px;
+	border-bottom:1px solid #000; 
 }

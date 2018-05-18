@@ -320,16 +320,22 @@ class Handler(BaseHandler):
             print("result is empty")
             return
         print(result)
+        length = len(result['tie_content'])
+        if(length > 127):
+            text = result['tie_content']
+            result['tie_content'] = text[0:127]
+        else:
+            text = ""
         conn = pymysql.connect(host='127.0.0.1', port=3306, user='repository', passwd='repository', db='repository', charset='utf8')
         cur = conn.cursor()
-        cur.execute("select * from tie2 where project_name = %s and tie_user = %s and publish_time = %s", (project_name,result['tie_user'],result['publish_time']))
+        cur.execute("select * from sub_forum where project_name = %s and tie_user = %s and publish_time = %s and tie_content=%s ", (project_name,result['tie_user'],result['publish_time'],result['tie_content']))
         rows = cur.fetchall()
         if len(rows):
             cur.close()
             conn.close()
             return
-        cur.execute("insert into tie2(project_name,tie_title,tie_user,publish_time,tie_content,response,crawl_time) values(%s,%s,%s,%s,%s,%s,%s)", 
-            (project_name,result['tie_title'],result['tie_user'],result['publish_time'], result['tie_content'],result['response'],result['crawl_time']))
+        cur.execute("insert into sub_forum(project_name,title,tie_user,publish_time,tie_content,crawl_time,text) values(%s,%s,%s,%s,%s,%s,%s)", 
+            (project_name,result['tie_title'],result['tie_user'],result['publish_time'], result['tie_content'],result['crawl_time'],text))
         conn.commit()
         cur.close()
         conn.close()
