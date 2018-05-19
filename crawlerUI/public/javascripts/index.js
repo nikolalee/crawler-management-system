@@ -100,10 +100,9 @@ $(document).ready(function(){
 		'<li class="item item_color" ><span class="pro-name">'+name+'</span></li>'+
 		'<li class="item item_color" >'+
 		'<span>'+status+'</span></li>'+
-		'<li class="item item_color" ><span>progress</span></li>'+
-	  	'<li class="item item_color" ><span class="log_toggle">log</span></li>'+
-	  	'<li class="item item_color" ><span class="action run">run</span><span class="action stop">stop</span><span class="action del">del</span></li>'+
-	  	'<li class="item item_color" ><span class="results " >results</span></li>'+
+	  	'<li class="item item_color btn" ><span class="log_toggle">log</span></li>'+
+	  	'<li class="item item_color btn" ><span class="action run">run</span><span class="action stop">stop</span><span class="action del">del</span></li>'+
+	  	'<li class="item item_color btn" ><span class="results " >results</span></li>'+
 	  	'</ul>'+
 	  	'<div class="log" ></div>'+
   		'</div>';
@@ -116,10 +115,9 @@ $(document).ready(function(){
 		'<li class="item item_color" ><span class="pro-name">'+name+'</span></li>'+
 		'<li class="item item_color" >'+
 		'<span>'+status+'</span></li>'+
-		'<li class="item item_color" ><span>progress</span></li>'+
-	  	'<li class="item item_color" ><span class="log_toggle">log</span></li>'+
-	  	'<li class="item item_color" ><span class="action run">run</span><span class="action stop">stop</span><span class="action del">del</span></li>'+
-	  	'<li class="item item_color" ><span class="results " >results</span></li>'+
+	  	'<li class="item item_color btn" ><span class="log_toggle">log</span></li>'+
+	  	'<li class="item item_color btn" ><span class="action run">run</span><span class="action stop">stop</span><span class="action del">del</span></li>'+
+	  	'<li class="item item_color btn" ><span class="results " >results</span></li>'+
 	  	'</ul>'+
 	  	'<div class="log" ></div>'+
   		'</div>';

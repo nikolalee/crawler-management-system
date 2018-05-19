@@ -67,20 +67,23 @@ $.ajax({
             }
             //console.log(percent);
             //console.log(sum);
+            var percent2 = [];
             for(var i = 0;i < percent.length;i++){
                 if(percent[i]){
-                    percent[i] = (percent[i] / sum)*100;
-                    _this.percent[i] = parseFloat(percent[i].toFixed(2));
+                    percent2[i] = (percent[i] / sum)*100;
+                    percent2[i] = parseFloat(percent2[i].toFixed(2));
                 }else{
-                    _this.percent[i] = 0;                            
+                    percent2[i] = 0;                            
                 }
             }
             
-            console.log(_this.percent);
+            console.log(percent);
             $("#bars li .bar").each(function(index,item) {
              
                 // console.log(res.data);
-                var percentage = _this.percent[index];
+                var percentage = percent2[index];
+                $(this).attr('data-percentage',percentage);
+                $(this).attr('data-num',percent[index]);
                 // console.log(percentage);
                 $(this).animate({
                     'height' : percentage + '%'

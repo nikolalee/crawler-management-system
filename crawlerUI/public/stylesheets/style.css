@@ -56,13 +56,13 @@ nav ul li a{
 #running-project{
 	margin: 10px 20px;
 	/* height: 200px; */
-	background-color: #eaeff3;
+	/* background-color: #eaeff3; */
 	padding: 0px 0px 10px;
 }
 .title{
 	width: 100%;
 	height: 24px;
-	background-color: pink;
+	background-color: #a1b6ef;
 }
 .title div{
 	width: 200px;
@@ -93,21 +93,28 @@ nav ul li a{
 	align-items: center;
 }
 .title_color{
-	background-color: #efb3b3;
+	background-color: #d6e2dd;
 }
 .item{
-	color: #0d807d;
+	color: #000;
 	text-align: center;
-	/* margin-left: 6px; */
 	border: 1px solid #eaeff3;
 	width: 12%;
-	height: 24px;
-	line-height: 24px;
+	height: 30px;
+	line-height: 30px;
 	/* margin: 5px; */
+}
+.item span{
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
 }
 .item_color{
 	background-color: #d0c1c1;
 	color: #fff;
+}
+.btn{
+	background-color: #eaeff3;
 }
 .action{
 	display: inline-block;
@@ -135,7 +142,7 @@ nav ul li a{
 #recent-project{
 	margin: 10px 20px;
 	height: 200px;
-	background-color: #eaeff3;
+	/* background-color: #eaeff3; */
 }
 .log{
 	width: 80%;
@@ -212,6 +219,9 @@ nav ul li a{
 }
 #no{
 	background-color: green;
+}
+.item-box{
+	margin: 10px 0;
 }
 /* #running-project ul{ */
 	/* width: 100%; */

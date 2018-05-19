@@ -129,7 +129,7 @@ nav ul li a{
     border:1px solid gray;
     padding:40px;
     overflow: auto;
-    text-align: center;
+    /* text-align: center; */
 }
 
 

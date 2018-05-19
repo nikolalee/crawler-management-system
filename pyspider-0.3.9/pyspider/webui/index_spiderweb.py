@@ -108,7 +108,11 @@ def spiderweb_counter():
         app.logger.warning('connect to scheduler rpc error: %r', e)
         return json.dumps({}), 200, {'Content-Type': 'application/json'}
 
-    return json.dumps(result), 200, {'Content-Type': 'application/json'}
+    #return json.dumps(result), 200, {'Content-Type': 'application/json'}
+    result_json = json.dumps(result)
+    resp = Response(result_json)
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
 
 
 @app.route('/spiderweb/run', methods=['POST', ])

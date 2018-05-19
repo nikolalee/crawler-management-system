@@ -11,14 +11,16 @@ $(document).ready(function(){
     $.ajax({
         url:url,
         type:'GET',
+        dataType:'JSON',
         data:{},
         success:function(res){
             console.log("success");
-            console.log(res);
-            if(res === null){
+            
+            console.log(res['script']);
+            if(res == null){
                 container.html("no code now.");
             }else{
-                _container.html(res.script);
+                container.html("<pre>"+res.script+"</pre>");
             }
             
         }

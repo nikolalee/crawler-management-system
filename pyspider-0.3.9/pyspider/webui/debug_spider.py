@@ -264,8 +264,12 @@ def spiderweb_get_script(project):
     if not projectdb.verify_project_name(project):
         return 'project name is not allowed!', 400
     info = projectdb.get(project, fields=['name', 'script'])
-    return json.dumps(utils.unicode_obj(info)), \
-        200, {'Content-Type': 'application/json'}
+    #return json.dumps(utils.unicode_obj(info)), \
+     #   200, {'Content-Type': 'application/json'}
+    result_json = json.dumps(info)
+    resp = Response(result_json)
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
 
 @app.route('/spiderweb/debug/<project>/getData',methods=['POST', ])
 def spiderweb_get_data(project):

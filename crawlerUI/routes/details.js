@@ -65,13 +65,31 @@ router.get('/', function(req, res, next) {
 		});
   	}else if(type == "forum"){
   		var title = req.query.title;
-  		var sql = "SELECT * FROM tie2 where project_name='"+project+"' and title='"+title+"'";
+  		var sql = "SELECT * FROM forum where project_name='"+project+"' and title='"+title+"'";
   		connection.query(sql,function (err, result) {
 	        if(err){
 	          console.log('[SELECT ERROR] - ',err.message);
 	          return;
 	        }
-	 		res.render('detail_forum1', { title: author,data:result});
+	        if(result.length > 0){
+	        	var sql2 = "SELECT * FROM sub_forum where project_name='"+project+"' and title='"+title+"'";
+	        	connection.query(sql2,function (err2, data) {
+			        if(err2){
+			          console.log('[SELECT ERROR] - ',err.message);
+			          return;
+			        }
+			        console.log(data);
+			        console.log(result);
+			        console.log(data.length);
+			       if(data.length>0){
+							res.render('detail_forum2', { title: result[0].tie_user,data:data,result:result});
+			       }else{
+			       		res.render('detail_forum1', { title: result[0].tie_user,result:result});
+			       }
+				});
+	        }else{
+	        	return;
+	        }
 		});
   	}
   	
