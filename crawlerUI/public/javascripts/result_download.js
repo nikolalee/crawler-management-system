@@ -7,6 +7,7 @@ $(document).ready(function(){
     var download = $('#download');
     $("#type").val(type);
     $('#project').val(project_name);
+    change_btn_color();
     bindEvent();
     function bindEvent(){
         overview.on('click',function(){
@@ -25,6 +26,12 @@ $(document).ready(function(){
             location.href = href;        
         });
     
+    }
+    function change_btn_color(){
+        download.css('background-color',"#e3e3e3");
+        overview.css('background-color',"#fff");
+        code.css('background-color',"#fff");
+        result.css('background-color',"#fff");
     }
     
 })

@@ -6,13 +6,13 @@
   </head>
   <body>
   	<nav>
-  		<a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
+      <a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
       <ul>
-        <li><a href="http://localhost:3000/">NEWS<a></li>
-        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
-        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
+        <li><a href="http://localhost:3000/comment">评论爬虫创建<a></li>
+        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
       </ul>
-  	</nav>
+    </nav>
     <div class="side">
       <div class="menu ">主菜单</div>
       <div class="menu-child" id="overview">总览</div>
@@ -31,11 +31,7 @@
                         <strong>爬虫名称 : </strong><span id="crawl-name" ><%= name %></span>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <strong>创建时间 ：</strong><span id="crawl-time" ></span>
-                    </td>
-                </tr>
+               
                 <tr>
                     <td>
                         <strong>爬取数据类型 ：</strong><span id="crawl-type" ><%= type %></span>
@@ -60,10 +56,10 @@
                         <li><span>0%</span></li>
                     </ul>
                     <ul id="bars">
-                        <li><div data-num="0" data-percentage="0" class="bar"></div><span>pending</span></li>
-                        <li><div data-num="0" data-percentage="0" class="bar"></div><span>success</span></li>
-                        <li><div data-num="0" data-percentage="0" class="bar"></div><span>retry</span></li>
-                        <li><div data-num="0" data-percentage="0" class="bar"></div><span>fail</span></li>
+                        <li><div data-num="0" data-percentage="0" class="bar"></div><span>等待爬取</span></li>
+                        <li><div data-num="0" data-percentage="0" class="bar"></div><span>爬取成功</span></li>
+                        <li><div data-num="0" data-percentage="0" class="bar"></div><span>重试</span></li>
+                        <li><div data-num="0" data-percentage="0" class="bar"></div><span>爬取失败</span></li>
                     </ul>
                 </div>
         </div>

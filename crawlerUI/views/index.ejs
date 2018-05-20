@@ -6,60 +6,38 @@
   </head>
   <body>
   	<nav>
-  		<a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
+  		<a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
       <ul>
-        <li><a href="http://localhost:3000/">NEWS<a></li>
-        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
-        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
+        <li><a href="http://localhost:3000/comment">评论爬虫创建</a></li>
+        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
       </ul>
   	</nav>
   	
   	
   	<div id="running-project">
-  		<div class="title"><div>running project</div></div>
+  		<div class="title"><div>正在运行</div></div>
   		<div id="head">
 	  		<ul class="ul_item ">
-	  			<li class="item title_color" ><span>website</span></li>
-	  			<li class="item title_color" ><span>project name</span></li>
-	  			<li class="item title_color" ><span>status</span></li>
-	  			<li class="item title_color" ><span>log</span></li>
-	  			<li class="item title_color" ><span>action</span></li>
-	  			<li class="item title_color" ><span>results</span></li>
+	  			<li class="item title_color" ><span>爬取对象</span></li>
+	  			<li class="item title_color" ><span>爬虫名称</span></li>
+	  			<li class="item title_color" ><span>状态</span></li>
+	  			<li class="item title_color" ><span>操作</span></li>
+	  			<li class="item title_color" ><span>结果</span></li>
 	  		</ul>
   		</div>
-  		<div id="items">
-  			<div class="item-box">
-	  		<ul class="ul_item">
-	  			<li class="item item_color" ><span>douban</span></li>
-	  			<li class="item item_color" ><span class="pro-name">tes</span></li>
-	  			<li class="item item_color" ><span>status</span></li>
-	  			<li class="item item_color" >
-	  				<span class="log_toggle">log</span>
-	  			</li>
-	  			<li class="item item_color" >
-	  				<span class="action run">run</span>
-	  				<span class="action stop">stop</span>
-	  				<span  class="action del">del</span>
-	  			</li>
-	  			<li class="item item_color" >
-	  				<span  class="results " >results</span>
-	  			</li>
-	  		</ul>
-	  		<div class="log" ></div>
-  		</div>
-  		</div>
+      <div id="items"></div>
   		
   	</div>
   	<div id="recent-project">
-  		<div class="title"><div>todo project</div></div>
+  		<div class="title"><div>未运行</div></div>
   		<div id="head">
 	  		<ul class="ul_item ">
-	  			<li class="item title_color" ><span>website</span></li>
-	  			<li class="item title_color" ><span>project name</span></li>
-	  			<li class="item title_color" ><span>status</span></li>
-	  			<li class="item title_color" ><span>log</span></li>
-	  			<li class="item title_color" ><span>action</span></li>
-	  			<li class="item title_color" ><span>results</span></li>
+	  			<li class="item title_color" ><span>爬取对象</span></li>
+	  			<li class="item title_color" ><span>爬虫名称</span></li>
+	  			<li class="item title_color" ><span>状态</span></li>
+	  			<li class="item title_color" ><span>操作</span></li>
+	  			<li class="item title_color" ><span>结果</span></li>
 	  		</ul>
 	  		<div class="log"></div>
   		</div>
@@ -67,13 +45,13 @@
   			
   		</div>
   	</div>
-  	<div id="shadow">
+  	<div id="shadow" class="hide">
   		<div id="alert">
   			<div id="alert-btn">
-  				<span>Sure to delete?</span>
+  				<span>确认删除?</span>
   				<div>
-  					<span class="del-btn" id="yes">yes</span>
-  					<span class="del-btn" id="no">no</span>
+  					<span class="del-btn" id="yes">是</span>
+  					<span class="del-btn" id="no">否</span>
   				</div>
   			</div>
   		</div>

@@ -5,6 +5,7 @@ $(document).ready(function(){
     var result = $('#result');
     var code = $('#code');
     var download = $('#download');
+    change_btn_color();
     bindEvent();
     function bindEvent(){
         overview.on('click',function(){
@@ -42,6 +43,12 @@ $(document).ready(function(){
             
             location.href = url;
         })
+    }
+    function change_btn_color(){
+        result.css('background-color',"#e3e3e3");
+        overview.css('background-color',"#fff");
+        code.css('background-color',"#fff");
+        download.css('background-color',"#fff");
     }
     
 })

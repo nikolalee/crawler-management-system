@@ -32,7 +32,7 @@ nav ul li{
 	float: right;
 	list-style: none;
 	height: 40px;
-	width: 80px;
+	width: 100px;
 	text-align: center;
 	line-height: 40px;
 	cursor: pointer;
@@ -54,14 +54,14 @@ nav ul li a{
 	height: auto;
 	width: 100%;
 	padding: 30px 60px;
-	background-color: lightslategray;
+	background-color: #c1c5ca;
 	box-sizing: border-box;
 }
 p{
 	width: 40%;
 	height: 30px;
 	line-height: 30px;
-	background-color:#ebf2f9;
+	background-color:#9fb0c1;
 	margin-bottom: 20px;
 	padding-left: 10px;
 }
@@ -83,8 +83,8 @@ div.content{
 	text-indent: 14px;
 	padding: 30px;
 	box-sizing: border-box;
-	color: #fff;
-	border: 1px solid #111;
+	color: #3a2727;
+	border: 1px solid #736e6e;
 }
 .text{
 	width: 15%;

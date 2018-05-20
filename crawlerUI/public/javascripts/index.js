@@ -23,10 +23,11 @@ $(document).ready(function(){
 		var target = $(event.target);
 		var oDiv = target.parent().parent().parent();
 		var name = oDiv.find('.pro-name').eq(0).html();
-		var data = del(name);
-		// console.log(data);
-		oDiv.remove();
-		
+		sure_to_delete(name);
+	})
+	//bind delete event
+	$('#running-project').on('click','ul > li > span.del',function(event){
+		alert("请先暂停该爬虫.");
 	})
 	//bind run event
 	$('#running-project').add('#recent-project').on('click','ul > li > span.run',function(event){
@@ -62,7 +63,6 @@ $(document).ready(function(){
 	
 	function get_info(){
 		// var item = [];
-		window.localStorage.setItem("forum_tianya7", "forum");
 		$.ajax({
 			url:'http://localhost:5000/get_info',
 			type:'POST',
@@ -70,21 +70,21 @@ $(document).ready(function(){
 				// console.log(data);
 				// item = data;
 				var data = JSON.parse(item);
-				console.log(data.length);
+				// console.log(data.length);
 				if(data){
 					runningArea.empty();
 					todoArea.empty();
 					for(var i = 0;i < data.length;i++){
 						// console.log("2");
 						// console.log(data.length);
-						// console.log(data[i]['name']);
+						// console.log(data[i]['status']);
 						var web="";
 						if(data[i]['status'] == "RUNNING"){
 							web = window.localStorage.getItem(data[i]['name']);
 							addNodeRun(web,data[i]['name'],data[i]['status']);
 						}else{
 							web = window.localStorage.getItem(data[i]['name']);
-							console.log("web:"+web);
+							// console.log("web:"+web);
 							addNodeTodo(web,data[i]['name'],data[i]['status']);
 						}
 					}
@@ -99,12 +99,10 @@ $(document).ready(function(){
 		'<li class="item item_color" ><span>'+web+'</span></li>'+
 		'<li class="item item_color" ><span class="pro-name">'+name+'</span></li>'+
 		'<li class="item item_color" >'+
-		'<span>'+status+'</span></li>'+
-	  	'<li class="item item_color btn" ><span class="log_toggle">log</span></li>'+
-	  	'<li class="item item_color btn" ><span class="action run">run</span><span class="action stop">stop</span><span class="action del">del</span></li>'+
-	  	'<li class="item item_color btn" ><span class="results " >results</span></li>'+
+		'<span class="run-color">'+status+'</span></li>'+
+	  	'<li class="item item_color btn" ><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></li>'+
+	  	'<li class="item item_color btn" ><span class="results " >结果</span></li>'+
 	  	'</ul>'+
-	  	'<div class="log" ></div>'+
   		'</div>';
   		runningArea.append(appendPart);
 	}
@@ -114,12 +112,10 @@ $(document).ready(function(){
 		'<li class="item item_color" ><span>'+web+'</span></li>'+
 		'<li class="item item_color" ><span class="pro-name">'+name+'</span></li>'+
 		'<li class="item item_color" >'+
-		'<span>'+status+'</span></li>'+
-	  	'<li class="item item_color btn" ><span class="log_toggle">log</span></li>'+
-	  	'<li class="item item_color btn" ><span class="action run">run</span><span class="action stop">stop</span><span class="action del">del</span></li>'+
-	  	'<li class="item item_color btn" ><span class="results " >results</span></li>'+
+		'<span class="todo-color">'+status+'</span></li>'+
+	  	'<li class="item item_color btn" ><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></li>'+
+	  	'<li class="item item_color btn" ><span class="results " >结果</span></li>'+
 	  	'</ul>'+
-	  	'<div class="log" ></div>'+
   		'</div>';
   		todoArea.append(appendPart);
 	}
@@ -131,7 +127,7 @@ $(document).ready(function(){
 			data:{'pk':name,'name':'status','value':'TODO'},
 			success:function(item){
 				var data = JSON.parse(item);
-				console.log(data);
+				// console.log(data);
 				get_info();
 			}
 		})
@@ -143,6 +139,47 @@ $(document).ready(function(){
         setTimeout(function(){
             location.href = url;
         },500);
+	}
+	function run(name){
+		var url1 = 'http://localhost:5000/spiderweb/run';
+		console.log(url1);
+		$.ajax({
+			url:'http://localhost:5000/update',
+			type:'POST',
+			data:{'pk':name,'name':'status','value':'RUNNING'},
+			success:function(item){
+				var data = JSON.parse(item);
+				console.log(data);
+				console.log(1);
+				setTimeout(function(){
+					if(data.code === 200){
+						$.ajax({
+							url:url1,
+							type:"POST",
+							data:{'project':name},
+							success:function(item){
+								console.log(item);
+								get_info();
+							},
+							error:function(e){
+								alert("crawler start failed:\n"+e);
+							}
+						})
+					}
+				},500);
+			}
+		})
+	}
+	function sure_to_delete(name){
+		$('#shadow').removeClass('hide');
+		$('#yes').on('click',function(){
+			$('#shadow').addClass('hide');
+			del(name);
+			get_info();
+		})
+		$('#no').on('click',function(){
+			$('#shadow').addClass('hide');
+		})
 	}
 	function del(name){
 		var pUrl = "http://localhost:5000/spiderweb/delete";

@@ -6,31 +6,31 @@
   </head>
   <body>
   	<nav>
-  		<a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
+  		<a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
       <ul>
-        <li><a href="http://localhost:3000/">NEWS<a></li>
-        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
-        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
+        <li><a href="http://localhost:3000/comment">评论爬虫创建</a></li>
+        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
       </ul>
   	</nav>
     <div id="box">
-      <p class="title">project_name:<span><%= result[0].project_name %></span></p>
-      <p class="title">author:<span><%= result[0].comment_author %></span></p>
-      <p class="title">vote:<span id="src"><%= result[0].vote %></span>time:<span><%= result[0].publish_time %></span></p>
-      <p class="title">crawl time:<span><%= result[0].crawl_time %></span></p>
+      <p class="title">爬虫名称: <span><%= result[0].project_name %></span></p>
+      <p class="title">评论作者: <span><%= result[0].comment_author %></span></p>
+      <p class="title">点赞数: <span id="src"><%= result[0].vote %></span>评论时间: <span><%= result[0].publish_time %></span></p>
+      <p class="title">爬取时间: <span><%= result[0].crawl_time %></span></p>
       
-      <p class="title text last">content:</p>
+      <p class="title text last">评论内容:</p>
       <div class="content">
         <%= result[0].content %>
       </div>
-      <p class="title text">response to:</p>
+      <p class="title text">评论回复:</p>
       <div class="content">
         <% for(var i = 0;i < data.length;i++){ %>
           <div class="item">
            <!--  <li><span>title</span></li>
             <li><span>url</span></li> -->
-            <span class="author">user:  <%= data[i].reply_user %></span>
-            <span class="time">time:  <%= data[i].reply_time %></span>
+            <span class="author">回复用户:  <%= data[i].reply_user %></span>
+            <span class="time">回复时间:  <%= data[i].reply_time %></span>
             <div><%= data[i].reply_content %></div>
             
           </div> 

@@ -6,19 +6,19 @@
   </head>
   <body>
   	<nav>
-  		<a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
+  		<a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
       <ul>
-        <li><a href="http://localhost:3000/">NEWS<a></li>
-        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
-        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
+        <li><a href="http://localhost:3000/comment">评论爬虫创建</a></li>
+        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
       </ul>
   	</nav>
     <div id="box">
-      <p class="title">project_name:<span><%= data[0].project_name %></span></p>
-      <p class="title">title:<a href="<%= data[0].url %>"><%= data[0].news_title %></a></p>
-      <p class="title">source:<span id="src"><%= data[0].src %></span>time:<span><%= data[0].publish_time %></span></p>
-      <p class="title">crawl time:<span><%= data[0].crawl_time %></span></p>
-      <p class="title text">content:</p>
+      <p class="title">爬虫名称: <span><%= data[0].project_name %></span></p>
+      <p class="title">新闻标题: <a href="<%= data[0].url %>"><%= data[0].news_title %></a></p>
+      <p class="title">新闻来源: <span id="src"><%= data[0].src %></span>发布时间: <span><%= data[0].publish_time %></span></p>
+      <p class="title">爬取时间: <span><%= data[0].crawl_time %></span></p>
+      <p class="title text">新闻内容:</p>
       <div id="content">
 
         <%= data[0].content %>

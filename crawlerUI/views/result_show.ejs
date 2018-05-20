@@ -6,11 +6,11 @@
   </head>
   <body>
   	<nav>
-  		<a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
+  		<a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
       <ul>
-        <li><a href="http://localhost:3000/">NEWS<a></li>
-        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
-        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
+        <li><a href="http://localhost:3000/comment">评论爬虫创建</a></li>
+        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
       </ul>
   	</nav>
     <div class="side">
@@ -30,7 +30,7 @@
         <li class="title"><%= data[i].news_title %></li>
         <li><%= data[i].url %></li>
         <li><%= data[i].publish_time %></li>
-        <li><span  class="details">details</span></li>
+        <li><span  class="details">详情</span></li>
       </ul> 
       <% } %>
     </div>

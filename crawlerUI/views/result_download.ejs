@@ -6,11 +6,11 @@
   </head>
   <body>
   	<nav>
-  		<a id="home" href="http://localhost:3000/index">CRAWL MANAGEMENT DASHBOARD</a>
+  		<a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
       <ul>
-        <li><a href="http://localhost:3000/">NEWS<a></li>
-        <li><a href="http://localhost:3000/comment">COMMENT</a></li>
-        <li><a href="http://localhost:3000/forum">FORUM</a></li>
+        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
+        <li><a href="http://localhost:3000/comment">评论爬虫创建</a></li>
+        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
       </ul>
   	</nav>
     <div class="side">
@@ -33,10 +33,11 @@
             <option>csv</option>
             <option>txt</option>
         </select>
-        <h5>爬虫type</h5>
-        <input type="text" name="webType" id="type" />
-        <h5>爬虫name</h5>
+        <h5>爬虫名称</h5>
         <input type="text" name="project_name" id="project" />
+        <h5>爬虫类型</h5>
+        <input type="text" name="webType" id="type" />
+        
         <input type="submit"id="down" value="导出文件"/>
     </form>
     </div>

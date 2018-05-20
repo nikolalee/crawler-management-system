@@ -32,7 +32,7 @@ nav ul li{
 	float: right;
 	list-style: none;
 	height: 40px;
-	width: 80px;
+	width: 100px;
 	text-align: center;
 	line-height: 40px;
 	cursor: pointer;
@@ -122,8 +122,8 @@ nav ul li a{
     bottom:20px;
     left:120px;
     right:20px;
-    #border:1px solid gray;
-    padding:40px;
+    /* #border:1px solid gray; */
+    padding:20px;
 }
 .item{
     width:100%;
