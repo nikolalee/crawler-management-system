@@ -93,6 +93,7 @@ def spiderweb_debug_get_script_save(project):
                       .replace('__TIME_CSS__', request.values.get('time_css') or '__TIME_CSS__')
                       .replace('__SRC_CSS__', request.values.get('src_css') or '__SRC_CSS__')
                       .replace('__CONTENT_CSS__', request.values.get('content_css') or '__CONTENT_CSS__')
+                      .replace('__DEEP_NUM__',request.values.get('deep_num') or '__DEEP_NUM__')
                       .replace('__NEXTPAGE_FORMAT__', request.values.get('nextpage_format') or '__NEXTPAGE_FORMAT__'))
         elif web_type == "comment":
            script = (default_script_comment

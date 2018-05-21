@@ -12,7 +12,7 @@ time_css = '__TIME_CSS__'
 src_css = '__SRC_CSS__'
 content_css = '__CONTENT_CSS__'
 nextpage_format  = '__NEXTPAGE_FORMAT__'
-
+deep_num = '__DEEP_NUM__'
 from pyspider.libs.base_handler import *
 
 import sys, time, pymysql,time,re
@@ -43,13 +43,30 @@ class Handler(BaseHandler):
         url = response.url+"#more"
         if nextpage_format == "move":
             script = '''function(){
-        setInterval("window.scrollTo(0,document.body.scrollHeight)",600);return 12;}'''
+                var num = '''+str(deep_num)+''';
+                var count = 0;
+                var timer = setInterval(function(){
+                    window.scrollTo(0,document.body.scrollHeight);
+                    count++;
+                    if (count > num){
+                        clearInterval(timer);
+                        }            
+                    },600)
+                    return 123;
+                } ''';
         elif nextpage_format == "click":
             script = """function(){
-        setInterval("$('"""+nextpage_css+"""')[0].click()",10);return 12;}"""   
-        else:
-            print("undefined type")
-            return        
+                var num = """+str(deep_num)+""";
+                var count = 0;
+                var timer = setInterval(function(){
+                    $('"""+nextpage_css+"""')[0].click();
+                    count++;
+                    if(count > num){
+                        clearInterval(timer);
+                    }
+                },100)
+                return 12;
+            }"""    
         self.crawl(url,callback=self.phantomjs_parser,fetch_type="js",js_script=script)
         
     def phantomjs_parser(self,response):

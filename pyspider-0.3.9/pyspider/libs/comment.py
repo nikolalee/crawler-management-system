@@ -112,7 +112,7 @@ class Handler(BaseHandler):
                     }
                 },10)
                 return 123;
-            }"""
+            }""";
             self.crawl(url,callback=self.phantomjs_parser,fetch_type="js",js_script=script)
            
             

@@ -17,35 +17,37 @@
       <div class="item-box">
         <ul class="enter-box">
           <li>
-            <label>爬虫名称</label>
+            <label>爬虫名称:</label>
             <input type="text" value="如: 水利网站爬虫" id="crawler-name" class="enter front"/>
-            <label>起始网址</label>
+            <label>起始网址:</label>
             <input type="text" id="crawler-url" value="http://mobile.163.com/" class="enter"/>
           </li>
           <li>
-            <label>新闻标题样式选择器</label>
+            <label>新闻标题样式选择器:</label>
             <input type="text" value="#epContentLeft > h1" id="title-css" class="enter front"/>
-            <label>获取更多新闻列表样式选择器</label>
+            <label>获取更多新闻列表样式选择器:</label>
             <input type="text" value="body > div.index2016_wrap > div.ne-area > div.area.clearfix > div.msg_list > div > div.newsdata_wrap > a:nth-child(3)"  id="nextpage-css" class="enter"/>
           </li>
           <li>
-            <label>新闻页面url样式选择器</label>
+            <label>新闻页面url样式选择器:</label>
             <input type="text" value="body > div.index2016_wrap > div.ne-area > div.area.clearfix > div.msg_list > div > div.newsdata_wrap > ul > li > div > div > div > div.news_title > h3 > a" id="href-css" class="enter front"/>
-            <label>发布时间样式选择器</label>
+            <label>发布时间样式选择器:</label>
             <input type="text" value="#epContentLeft > div.post_time_source"  id="time-css" class="enter"/>
           </li>
           <li>
-             <label>新闻来源样式选择器</label>
+             <label>新闻来源样式选择器:</label>
               <input type="text" value="#ne_article_source" id="src-css" class="enter front"/>
-              <label>新闻内容样式选择器</label>
+              <label>新闻内容样式选择器:</label>
               <input type="text" value="#endText"  id="content-css" class="enter"/>
           </li>
           <li>
-            <label for="nextpage-format">获取更多新闻列表方式</label>
+            <label for="nextpage-format">获取更多新闻列表方式:</label>
              <select id='nextpage-format'>
-               <option>click</option>
-               <option>move</option>
+               <option>下拉加载</option>
+               <option>点击按钮加载</option>
              </select>
+            <label>爬取页面数:</label>
+              <input type="text" value="0"  id="deep_num" class="enter"/>
           </li>
         </ul>
       </div>

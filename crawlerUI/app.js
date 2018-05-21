@@ -15,6 +15,7 @@ var showRouter = require('./routes/result_show');
 var codeRouter = require('./routes/result_code');
 var downloadRouter = require('./routes/result_download');
 var download = require('./routes/download');
+var getNum = require('./routes/getNum');
 
 var app = express();
 
@@ -39,6 +40,7 @@ app.use('/result_show',showRouter);
 app.use('/result_code',codeRouter);
 app.use('/result_download',downloadRouter);
 app.use('/download',download);
+app.use('/getNum',getNum);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

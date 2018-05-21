@@ -42,7 +42,12 @@ $(document).ready(function(){
 		 data['main_nextpage_css'] = $('#main-nextpage-css').val();
 		 data['nextpage_keyword'] = $('#nextpage_keyword').val();
 		 data['main_page_num'] = $('#main_page_num').val();
-		 data['nextpage_type'] = $('#nextpage-type').val();
+		 if($('#nextpage-type').val()=="单按钮加载"){
+		 	data['nextpage_type'] = 'single_btn';
+		 }else{
+		 	data['nextpage_type'] = 'btn_list';
+		 }
+		 
 
 		 data['href_css'] = $('#href_css').val();
 		 data['title_css'] = $('#title_css').val();

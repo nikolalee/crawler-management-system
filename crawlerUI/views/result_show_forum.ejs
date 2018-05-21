@@ -23,13 +23,19 @@
       <div class="menu-child bottom" id="download">导出到文件</div>
     </div>
   	<div id="container">
+      <ul class="item">
+        <li><%= head[0] %></li>
+        <li><%= head[1] %></li>
+        <li><%= head[2] %></li>
+        <li>详情</li>
+      </ul>
       <% for(var i = 0;i < data.length;i++){ %>
       <ul class="item">
        <!--  <li><span>title</span></li>
         <li><span>url</span></li> -->
       
-        <li class="title"><%= data[i].title %></li>
-        <li><%= data[i].url %></li>
+        <li class="title" title="<%= data[i].title %>"><%= data[i].title %></li>
+        <li title="<%= data[i].url %>"><%= data[i].url %></li>
         <li><%= data[i].publish_time %></li>
         <li><span  class="details">详情</span></li>
       </ul> 

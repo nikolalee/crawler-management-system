@@ -73,6 +73,7 @@ nav ul li a{
 .item-box{
 	width: 100%;
 	height: auto;
+	/* margin-bottom: 20px; */
 	/* background-color: lightslategray; */
 }
 
@@ -91,6 +92,7 @@ nav ul li a{
 	height: 32px;
 	color: #333;
 	margin: 16px 0;
+	margin-bottom:40px ;
 }
 .enter-box li label{
 	display: inline-block;

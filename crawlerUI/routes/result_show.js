@@ -34,12 +34,16 @@ router.get('/', function(req, res, next) {
           return;
         }
         if(type == "news"){
- 			res.render('result_show', { title: 'Result show',data:result});
+            var head = ['新闻标题','新闻地址','发布时间'];
+ 			res.render('result_show', { title: 'Result show',data:result,head:head});
         }
         else if(type == "comment"){
-        	res.render('result_show_comment', { title: 'Result show',data:result});
+            var head = ['评论作者','评论内容','评论时间'];
+        	res.render('result_show_comment', { title: 'Result show',data:result,head:head});
         }else{
-        	res.render('result_show_forum', { title: 'Result show',data:result});
+            var head = ['帖子标题','帖子地址','发布时间'];
+        	res.render('result_show_forum', { title: 'Result show',data:result,head:head});
+            
         }
 	});
 	// res.render('result_show', { title: 'Result show',name:project,type:type});
