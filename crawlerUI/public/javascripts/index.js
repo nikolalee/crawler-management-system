@@ -132,6 +132,17 @@ $(document).ready(function(){
 			}
 		})
 	}
+	//  delete data in mysql
+	function delSql(name,type){
+		$.ajax({
+			url:'/delete',
+			type:'GET',
+			data:{'name':name,'type':type},
+			success:function(e){
+				console.log(e);
+			}
+		})
+	}
 	function getResults(name,type){
 		var url = "http://localhost:3000/results?project="+name+"&type="+type;
         window.localStorage.setItem("project_name",name);
@@ -192,6 +203,8 @@ $(document).ready(function(){
 				data = JSON.parse(e);
 				console.log(data.code);
 				window.localStorage.removeItem(name);
+				var type = window.localStorage.getItem(name);
+				delSql(name,type);
 				// return data;
 				// console.log(temp);
 				// console.log(e);

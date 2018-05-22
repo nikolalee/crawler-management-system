@@ -29,14 +29,14 @@ $(document).ready(function(){
             var url = "";
             if(type == "news"){
                 var title = oDiv.find('.title').eq(0).html(); 
-                url = "http://localhost:3000/details?project_name="+project_name+"&type="+type+"&title="+title;           
+                url = "http://localhost:3000/details?project_name="+project_name+"&type="+type+"&title="+encodeURIComponent(title);           
             }else if(type == "comment"){
                 var author =  oDiv.find('.author').eq(0).html(); 
                 var time =  oDiv.find('.time').eq(0).html();  
                 url = "http://localhost:3000/details?project_name="+project_name+"&type="+type+"&author="+author+"&time="+time;         
             }else if(type == "forum"){
                 var title = oDiv.find('.title').eq(0).html(); 
-                url = "http://localhost:3000/details?project_name="+project_name+"&type="+type+"&title="+title;
+                url = "http://localhost:3000/details?project_name="+project_name+"&type="+type+"&title="+encodeURIComponent(title);
             }else{
                 return;
             }
