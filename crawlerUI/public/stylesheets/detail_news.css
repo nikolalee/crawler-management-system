@@ -88,6 +88,11 @@ div#content{
 	color: #3a2727;
 	border: 1px solid #736e6e;
 	background-color: #fff;
+
+}
+div#content pre{
+	white-space: pre-wrap;
+	word-wrap: break-word
 }
 .text{
 	width: 15%;

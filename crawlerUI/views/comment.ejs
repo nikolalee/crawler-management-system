@@ -3,93 +3,83 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/comment.css' />
+    <link rel="stylesheet" href='/nav_font/iconfont.css' />
   </head>
   <body>
   	<nav>
-  		<a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
-      <ul>
-        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
-        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
+  		<a id="home" href="http://localhost:3000/index"><i class="iconfont icon-pachong"></i>爬虫管理系统</a>
+      <a  id="create">爬虫创建</a>
+      <ul id="menu">
+        <li><a href="http://localhost:3000"><i class="iconfont icon-NEWS-copy"></i>论坛爬虫</a></li>
+        <li><a href="http://localhost:3000/comment"><i class="iconfont icon-comment"></i>论坛爬虫</a></li>
+        <li><a href="http://localhost:3000/forum"><i class="iconfont icon-luntan"></i>论坛爬虫</a></li>
       </ul>
   	</nav>
   	<div id="box">
-      <div class="title"><div>评论爬虫常用参数设置</div></div>
-      <div class="item-box">
-        <ul class="enter-box">
-          <li>
-            <label for="crawler-name">爬虫名称:</label><input type="text" id="crawler-name" value="comment_sohu" />
-            <label for="crawler-url">起始网址:</label><input type="text" id="crawler-url" value="https://www.sohu.com/a/230834733_115565?_f=index_news_19" />
-          </li>
-          <li>
-            <label for="nextpage-css">更多评论按钮样式选择器:</label><input type="text" id="nextpage-css" value="#mpbox > div.c-comment-content > div > div.c-comment-more" />
-            <label for="nextpage-name">更多评论按钮名称:</label><input type="text" id="nextpage-name" value="#" />
-          </li>
-          <li>
-            <label for="crawler-depth">爬取页面数:</label><input type="text" id="crawler-depth" value="4" />
-            <label for="step" title="it's the page step.">评论页面url公差:</label><input type="text" id="step" value="0" />
-            
-            
-          </li>
-          <li>
-            <label for="isIframe">是否为iframe结构:</label>
+      <div class="title"><div class="bar1"></div><div class="tit">评论爬虫常用参数设置</div><div class="bar2"></div></div>
+      <table>
+      <tr>
+        <td><label for="crawler-name">爬虫名称:</label><input type="text" id="crawler-name" value="comment_sohu" /></td>
+        <td> <label for="crawler-url">起始网址:</label><input type="text" id="crawler-url" value="https://www.sohu.com/a/230834733_115565?_f=index_news_19" /></td>
+      </tr>
+      <tr>
+        <td><label for="nextpage-css">更多评论按钮样式选择器:</label><input type="text" id="nextpage-css" value="#mpbox > div.c-comment-content > div > div.c-comment-more" /></td>
+        <td><label for="nextpage-name">更多评论按钮名称:</label><input type="text" id="nextpage-name" value="#" /></td>
+      </tr>
+      <tr>
+        <td><label for="crawler-depth">爬取页面数:</label><input type="text" id="crawler-depth" value="4" /></td>
+        <td><label for="step" title="it's the page step.">评论页面url公差:</label><input type="text" id="step" value="0" /></td>
+      </tr>
+      <tr>
+        <td><label for="isIframe">是否为iframe结构:</label>
             <select id="isIframe">
               <option>no</option>
               <option>yes</option>
-            </select>
-            <label for="iframe-id">iframe标签id属性值:</label><input type="text" id="iframe-id" value="#" />
-          </li>
-          <li>
-            <label for="more-type">获取更多评论方式:</label>
-            <select id="more-type">
-              <option>more_click</option>
-              <option>more_move</option>
-              <option>more_list</option>
-            </select>
-          </li>
-        </ul>
-      </div>
-      <div class="title comment"><div>评论参数设置</div></div>
-      <div class="item-box">
-        <ul class="enter-box">
-          <li>
-            <label for="comment-box-css">评论框样式选择器:</label><input type="text" id="comment-box-css" value="#mpbox > div.c-comment-content > div > div.c-comment-main > div" />
-            <label for="comment-author-css">评论作者样式选择器:</label><input type="text" id="comment-author-css" value="div.c-item-content > div.c-item-info.clear > div" />
-          </li>
-          <li>
-            <label for="time-css">评论时间样式选择器:</label><input type="text" id="time-css" value="div.c-item-content > div.c-user-content > div.c-controller > div" />
-            <label for="content-css">评论内容样式选择器:</label><input type="text" id="content-css" value="div.c-item-content > div.c-user-content > div.c-discuss" />
-          </li>
-          <li>
-            <label for="has-re-content-css">有回复时评论内容样式选择器:</label><input type="text" id="has-re-content-css" value="div.c-item-content > div.c-user-content > div.c-discuss" />
-            <label for="vote-css">点赞数样式选择器:</label><input type="text" id="vote-css" value="div.c-item-content > div.c-user-content > div.c-controller > a.c-thumb" />
-          </li>
-          <li>
-            <label for="response-type">回复类型:</label>
+            </select></td>
+        <td><label for="iframe-id">iframe标签id属性值:</label><input type="text" id="iframe-id" value="#" /></td>
+      </tr>
+    </table>
+      <div class="title"><div class="bar1 comment""></div><div class="tit">评论参数设置</div><div class="bar2 comment""></div></div>
+      <table>
+        <tr>
+          <td><label for="comment-box-css">评论框样式选择器:</label><input type="text" id="comment-box-css" value="#mpbox > div.c-comment-content > div > div.c-comment-main > div" /></td>
+          <td><label for="comment-author-css">评论作者样式选择器:</label><input type="text" id="comment-author-css" value="div.c-item-content > div.c-item-info.clear > div" /></td>
+        </tr>
+        <tr>
+          <td><label for="time-css">评论时间样式选择器:</label><input type="text" id="time-css" value="div.c-item-content > div.c-user-content > div.c-controller > div" /></td>
+          <td><label for="content-css">评论内容样式选择器:</label><input type="text" id="content-css" value="div.c-item-content > div.c-user-content > div.c-discuss" /></td>
+        </tr>
+        <tr>
+          <td><label for="has-re-content-css">有回复时评论内容样式选择器:</label><input type="text" id="has-re-content-css" value="div.c-item-content > div.c-user-content > div.c-discuss" /></td>
+          <td> <label for="vote-css">点赞数样式选择器:</label><input type="text" id="vote-css" value="div.c-item-content > div.c-user-content > div.c-controller > a.c-thumb" /></td>
+        </tr>
+        <tr>
+          <td><label for="response-type">回复类型:</label>
             <select id="response-type">
               <option>before</option>
               <option>after</option>
-            </select>
-            <label for="response-css ">回复内容样式选择器:</label><input type="text" id="response-css" value="div.c-item-content > div.c-make-floor > div > div.c-floor-content > div.c-floor-discuss" />
-          </li>
-        </ul>
-      </div>
+            </select></td>
+          <td><label for="response-css ">回复内容样式选择器:</label><input type="text" id="response-css" value="div.c-item-content > div.c-make-floor > div > div.c-floor-content > div.c-floor-discuss" /></td>
+        </tr>
+      </table>
+      
       <div id="response-box">
-        <div class="title response"><div>回复参数设置</div></div>
-        <div class="item-box">
-          <ul class="enter-box">
-            
-            <li>
-              <label for="response-box-css">回复框样式选择器:</label><input type="text" id="response-box-css" value="#" />
-              <label for="res-user-css">回复用户样式选择器:</label><input type="text" id="res-user-css" value="#" />
-            </li>
-            <li>
-              <label for="res-time-css">回复时间样式选择器:</label><input type="text" id="res-time-css" value="#" />
-              <label for="res-content-css">回复内容样式选择器:</label><input type="text" id="res-content-css" value="#" />
-            </li>
-          </ul>
-        </div>
+        <div class="title "><div class="bar1 response"></div><div class="tit">回复参数设置</div><div class="bar2 response"></div></div>
+        <table>
+        <tr>
+          <td><label for="response-box-css">回复框样式选择器:</label><input type="text" id="response-box-css" value="#" /></td>
+          <td><label for="res-user-css">回复用户样式选择器:</label><input type="text" id="res-user-css" value="#" /></td>
+        </tr>
+        <tr>
+          <td><label for="res-time-css">回复时间样式选择器:</label><input type="text" id="res-time-css" value="#" /></td>
+          <td><label for="res-content-css">回复内容样式选择器:</label><input type="text" id="res-content-css" value="#" /></td>
+        </tr>
+      </table>
       </div>
-      <span id="start">创建爬虫</span>
+      <div class="btn-box">
+        <div id="btn1">创建爬虫</div>
+        <div id="start">创建爬虫</div>
+      </div>
     </div>
   	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   	<script src="/javascripts/comment.js"></script>

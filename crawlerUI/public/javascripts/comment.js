@@ -1,12 +1,29 @@
 $(document).ready(function(){
 	var data = {};
 	var btn = $('#start');
+	var menuList = $('#menu');
 	$('#response-type').change(function(){
+		console.log(123);
 		if($('#response-type').val() == 'after'){
 			$('#response-box').css('display','block');
 		}else{
 			$('#response-box').css('display','none');
 		}
+	})
+	$('#create').add('#menu').mouseover(function(){
+		menuList.css('height','162px');
+		
+	})
+	// btn animation
+	$('.btn-box').mouseover(function(){
+		$('#start').css('top',0);
+	})
+	$('.btn-box').mouseout(function(){
+		$('#start').css('top','-50px');
+	})
+	//menu animation
+	$('#menu').add('#create').mouseout(function(){
+		menuList.css('height','0');
 	})
 	btn.on('click',function(){
 		get_data(data);
