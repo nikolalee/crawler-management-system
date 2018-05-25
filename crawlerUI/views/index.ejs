@@ -3,20 +3,22 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href='/nav_font/iconfont.css' />
   </head>
   <body>
   	<nav>
-  		<a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
-      <ul>
-        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
-        <li><a href="http://localhost:3000/comment">评论爬虫创建</a></li>
-        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
+      <a id="home" href="http://localhost:3000/index"><i class="iconfont icon-pachong"></i>爬虫管理系统</a>
+      <a  id="create">爬虫创建</a>
+      <ul id="menu">
+        <li><a href="http://localhost:3000"><i class="iconfont icon-NEWS-copy"></i>新闻爬虫</a></li>
+        <li><a href="http://localhost:3000/comment"><i class="iconfont icon-comment"></i>评论爬虫</a></li>
+        <li><a href="http://localhost:3000/forum"><i class="iconfont icon-luntan"></i>论坛爬虫</a></li>
       </ul>
-  	</nav>
+    </nav>
   	
-  	
+  	<div class="box">
   	<div id="running-project">
-  		<div class="title"><div>正在运行</div></div>
+      <div class="title"><div class="bar1 comment""></div><div class="tit">正在运行</div><div class="bar2 comment""></div></div>
   		<div id="head">
 	  		<ul class="ul_item ">
 	  			<li class="item title_color" ><span>爬取对象</span></li>
@@ -30,7 +32,7 @@
   		
   	</div>
   	<div id="recent-project">
-  		<div class="title"><div>未运行</div></div>
+      <div class="title"><div class="bar1 response""></div><div class="tit">未运行</div><div class="bar2 response""></div></div>
   		<div id="head">
 	  		<ul class="ul_item ">
 	  			<li class="item title_color" ><span>爬取对象</span></li>
@@ -56,6 +58,7 @@
   			</div>
   		</div>
   	</div>
+  </div>
   	<script src="/javascripts/jquery-3.2.1.js"></script>
   	<script src="/javascripts/index.js"></script>
   </body>

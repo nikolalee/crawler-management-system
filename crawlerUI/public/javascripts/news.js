@@ -13,8 +13,22 @@ $(document).ready(function(){
     var click;
     var nextpage_format;
     var deep_num;
-    // var nextpage_format = $('input[name="format"]:checked').eq(0).val();
+    var menuList = $('#menu');
     var btn = $('#start');
+    //menu animation
+    $('#menu').add('#create').mouseout(function(){
+        menuList.css('height','0');
+    })
+    $('#create').add('#menu').mouseover(function(){
+        menuList.css('height','162px');
+    })
+    // btn animation
+    $('.btn-box').mouseover(function(){
+        $('#start').css('top',0);
+    })
+    $('.btn-box').mouseout(function(){
+        $('#start').css('top','-50px');
+    })
     
     btn.on('click',function(){
         url = $('#crawler-url').val();

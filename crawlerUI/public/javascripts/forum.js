@@ -1,6 +1,22 @@
 $(document).ready(function(){
 	var data = {};
 	var btn = $('#start');
+	var menuList = $('#menu');
+    var btn = $('#start');
+    //menu animation
+    $('#menu').add('#create').mouseout(function(){
+        menuList.css('height','0');
+    })
+    $('#create').add('#menu').mouseover(function(){
+        menuList.css('height','162px');
+    })
+    // btn animation
+    $('.btn-box').mouseover(function(){
+        $('#start').css('top',0);
+    })
+    $('.btn-box').mouseout(function(){
+        $('#start').css('top','-50px');
+    })
 	btn.on('click',function(){
 		get_data(data);
 		var flag;

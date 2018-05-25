@@ -3,76 +3,79 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/forum.css' />
+    <link rel="stylesheet" href='/nav_font/iconfont.css' />
   </head>
   <body>
     <nav>
-      <a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
-      <ul>
-        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
-        <li><a href="http://localhost:3000/comment">评论爬虫创建</a></li>
+      <a id="home" href="http://localhost:3000/index"><i class="iconfont icon-pachong"></i>爬虫管理系统</a>
+      <a  id="create">爬虫创建</a>
+      <ul id="menu">
+        <li><a href="http://localhost:3000"><i class="iconfont icon-NEWS-copy"></i>新闻爬虫</a></li>
+        <li><a href="http://localhost:3000/comment"><i class="iconfont icon-comment"></i>评论爬虫</a></li>
+        <li><a href="http://localhost:3000/forum"><i class="iconfont icon-luntan"></i>论坛爬虫</a></li>
       </ul>
     </nav>
     <div id="box">
-      <div class="title"><div>论坛爬虫常用设置</div></div>
-      <div class="item-box">
-        <ul class="enter-box">
-          <li>
-            <label for="crawler-name">爬虫名称:</label><input type="text" id="crawler-name" value="forum_tianya" />
-            <label for="crawler-url">起始网址:</label><input type="text" id="crawler-url" value="http://bbs.tianya.cn/list.jsp?item=travel&nextid=1525650064000" />
-          </li>
-          <li>
-            <label for="main-nextpage-css">帖子列表页面“下一页”按钮样式选择器:</label><input type="text" id="main-nextpage-css" value="#main > div.short-pages-2.clearfix > div > a" />
-            <label for="nextpage_keyword">下一页按钮名称:</label><input type="text" id="nextpage_keyword" value="#" />
-          </li>
-          <li>
-            <label for="main_page_num">帖子列表页面爬取数:</label><input type="text" id="main_page_num" value="4" />
-            <label for="nextpage-type" title="it's the page step.">获取下一页方式:</label>
+      <div class="title"><div class="bar1"></div><div class="tit">论坛爬虫常用设置</div><div class="bar2"></div></div>
+      <table>
+        <tr>
+          <td><label for="crawler-name">爬虫名称:</label><input type="text" id="crawler-name" value="forum_tianya" /></td>
+          <td><label for="crawler-url">起始网址:</label><input type="text" id="crawler-url" value="http://bbs.tianya.cn/list.jsp?item=travel&nextid=1525650064000" /></td>
+        </tr>
+        <tr>
+          <td><label for="main-nextpage-css">帖子列表页面“下一页”按钮样式选择器:</label><input type="text" id="main-nextpage-css" value="#main > div.short-pages-2.clearfix > div > a" /></td>
+          <td><label for="nextpage_keyword">下一页按钮名称:</label><input type="text" id="nextpage_keyword" value="#" /></td>
+        </tr>
+        <tr>
+          <td><label for="main_page_num">帖子列表页面爬取数:</label><input type="text" id="main_page_num" value="4" /></td>
+          <td><label for="nextpage-type" title="it's the page step.">获取下一页方式:</label>
             <select id="nextpage-type">
               <option>单按钮加载</option>
               <option>页码按钮加载</option>
-            </select>
-          </li>
-        </ul>
+            </select></td>
+        </tr>
+      
+      </table>
+      <div class="title"><div class="bar1 comment""></div><div class="tit">帖子参数设置</div><div class="bar2 comment""></div></div>
+      <table>
+        <tr>
+          <td><li>
+            <label for="href_css">帖子列表中帖子url样式选择器:</label><input type="text" id="href_css" value="#main > div.mt5 > table > tbody > tr > td.td-title.facered > a" /></td>
+          <td><label for="title_css">帖子标题样式选择器:</label><input type="text" id="title_css" value="#post_head > h1 > span.s_title > span" /></td>
+        </tr>
+        <tr>
+          <td><label for="author_css">帖子作者样式选择器:</label><input type="text" id="author_css" value="#post_head > div.atl-menu.clearfix.js-bbs-act > div.atl-info > span:nth-child(1) > a" /></td>
+          <td><label for="publish_time_css">发布时间样式选择器:</label><input type="text" id="publish_time_css" value="#post_head > div.atl-menu.clearfix.js-bbs-act > div.atl-info > span:nth-child(2)" /></td>
+        </tr>
+        <tr>
+          <td><label for="content_css">帖子内容样式选择器:</label><input type="text" id="content_css" value="#bd > div.atl-main > div.atl-item.host-item > div > div.atl-con-bd.clearfix > div.bbs-content.clearfix" /></td>
+          <td><label for="main_step">帖子列表页面url公差:</label><input type="text" id="main_step" value="1" /></td>
+        </tr>
+        <tr>
+          <td><label for="sub_page_num">发言页爬取数:</label>
+            <input type="text" id="sub_page_num" value="4" /></td>
+        </tr>
+      </table>
+      <div class="title "><div class="bar1 response"></div><div class="tit">其他发言参数设置</div><div class="bar2 response"></div></div>
+        <table>
+      <table>
+        <tr>
+          <td><label for="sub_nextpage_tag">发言页“下一页”按钮样式选择器:</label><input type="text" id="sub_nextpage_tag" value="#bd > div:nth-child(6) > div:nth-child(1) > form > a.js-keyboard-next" /></td>
+          <td><label for="sub_step">发言页url公差:</label><input type="text" id="sub_step" value="1" /></td>
+        </tr>
+        <tr>
+          <td><label for="tie_box_css">发言框样式选择器:</label><input type="text" id="tie_box_css" value="#bd > div.atl-main > div" /></td>
+          <td><label for="tie_user_css ">发言用户样式选择器:</label><input type="text" id="tie_user_css" value="div.atl-head> div.atl-info > span:nth-child(1) > a" /></td>
+        </tr>
+        <tr>
+          <td><label for="tie_time_css">发言时间样式选择器:</label><input type="text" id="tie_time_css" value="div.atl-head> div.atl-info > span:nth-child(2)" /></td>
+          <td><label for="tie_content_css ">发言内容样式选择器:</label><input type="text" id="tie_content_css" value="div.atl-content > div.atl-con-bd.clearfix > div.bbs-content" /></td>
+        </tr>
+      </table>
+      <div class="btn-box">
+        <div id="btn1">创建爬虫</div>
+        <div id="start">创建爬虫</div>
       </div>
-      <div class="title comment"><div>帖子参数设置</div></div>
-      <div class="item-box">
-        <ul class="enter-box">
-          <li>
-            <label for="href_css">帖子列表中帖子url样式选择器:</label><input type="text" id="href_css" value="#main > div.mt5 > table > tbody > tr > td.td-title.facered > a" />
-            <label for="title_css">帖子标题样式选择器:</label><input type="text" id="title_css" value="#post_head > h1 > span.s_title > span" />
-          </li>
-          <li>
-            <label for="author_css">帖子作者样式选择器:</label><input type="text" id="author_css" value="#post_head > div.atl-menu.clearfix.js-bbs-act > div.atl-info > span:nth-child(1) > a" />
-            <label for="publish_time_css">发布时间样式选择器:</label><input type="text" id="publish_time_css" value="#post_head > div.atl-menu.clearfix.js-bbs-act > div.atl-info > span:nth-child(2)" />
-          </li>
-          <li>
-            <label for="content_css">帖子内容样式选择器:</label><input type="text" id="content_css" value="#bd > div.atl-main > div.atl-item.host-item > div > div.atl-con-bd.clearfix > div.bbs-content.clearfix" />
-            <label for="main_step">帖子列表页面url公差:</label><input type="text" id="main_step" value="1" />
-          </li>
-          <li>
-            <label for="sub_page_num">发言页爬取数:</label>
-            <input type="text" id="sub_page_num" value="4" />
-          </li>
-        </ul>
-      </div>
-      <div class="title response"><div>其他发言参数设置</div></div>
-      <div class="item-box">
-        <ul class="enter-box">
-          <li>
-            <label for="sub_nextpage_tag">发言页“下一页”按钮样式选择器:</label><input type="text" id="sub_nextpage_tag" value="#bd > div:nth-child(6) > div:nth-child(1) > form > a.js-keyboard-next" />
-            <label for="sub_step">发言页url公差:</label><input type="text" id="sub_step" value="1" />
-          </li>
-          <li>
-            <label for="tie_box_css">发言框样式选择器:</label><input type="text" id="tie_box_css" value="#bd > div.atl-main > div" />
-            <label for="tie_user_css ">发言用户样式选择器:</label><input type="text" id="tie_user_css" value="div.atl-head> div.atl-info > span:nth-child(1) > a" />
-          </li>
-          <li>
-            <label for="tie_time_css">发言时间样式选择器:</label><input type="text" id="tie_time_css" value="div.atl-head> div.atl-info > span:nth-child(2)" />
-            <label for="tie_content_css ">发言内容样式选择器:</label><input type="text" id="tie_content_css" value="div.atl-content > div.atl-con-bd.clearfix > div.bbs-content" />
-          </li>
-        </ul>
-      </div>
-      <span id="start">创建爬虫</span>
     </div>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="/javascripts/forum.js"></script>

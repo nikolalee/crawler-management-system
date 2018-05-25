@@ -5,8 +5,17 @@ $(document).ready(function(){
 	var newProject = $('#create');
 	var runningArea = $('#items');
 	var todoArea = $('#todoArea');
+	var menuList = $('#menu');
 	//bind log event
 	get_info();
+	//menu animation
+	$('#menu').add('#create').mouseout(function(){
+		menuList.css('height','0');
+	})
+	$('#create').add('#menu').mouseover(function(){
+		menuList.css('height','162px');
+		
+	})
 	$('#running-project').add('#recent-project').on('click','ul > li > span.log_toggle',function(event){
 		var target = $(event.target);
 		var logArea = target.parent().parent().parent().children('.log');

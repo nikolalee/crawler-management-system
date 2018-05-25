@@ -3,18 +3,56 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/news.css' />
+    <link rel="stylesheet" href='/nav_font/iconfont.css' />
   </head>
   <body>
     <nav>
-      <a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
-      <ul>
-        <li><a href="http://localhost:3000/comment">评论爬虫创建<a></li>
-        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
+  		<a id="home" href="http://localhost:3000/index"><i class="iconfont icon-pachong"></i>爬虫管理系统</a>
+      <a  id="create">爬虫创建</a>
+      <ul id="menu">
+        <li><a href="http://localhost:3000"><i class="iconfont icon-NEWS-copy"></i>新闻爬虫</a></li>
+        <li><a href="http://localhost:3000/comment"><i class="iconfont icon-comment"></i>评论爬虫</a></li>
+        <li><a href="http://localhost:3000/forum"><i class="iconfont icon-luntan"></i>论坛爬虫</a></li>
       </ul>
-    </nav>
+  	</nav>
     <div id="box">
-      <div class="title"><div>新闻爬虫常用参数设置</div></div>
-      <div class="item-box">
+    	<div class="title"><div class="bar1"></div><div class="tit">新闻爬虫常用参数设置</div><div class="bar2"></div></div>
+    	<table>
+    		<tr>
+    			<td><label>爬虫名称:</label>
+            <input type="text" value="如: 水利网站爬虫" id="crawler-name" class="enter front"/></td>
+    			<td><label>起始网址:</label>
+            <input type="text" id="crawler-url" value="http://mobile.163.com/" class="enter"/></td>
+    		</tr>
+    		<tr>
+    			<td><label>新闻标题样式选择器:</label>
+            <input type="text" value="#epContentLeft > h1" id="title-css" class="enter front"/></td>
+    			<td><label>获取更多新闻列表样式选择器:</label>
+            <input type="text" value="body > div.index2016_wrap > div.ne-area > div.area.clearfix > div.msg_list > div > div.newsdata_wrap > a:nth-child(3)"  id="nextpage-css" class="enter"/></td>
+    		</tr>
+    		<tr>
+    			<td><label>新闻页面url样式选择器:</label>
+            <input type="text" value="body > div.index2016_wrap > div.ne-area > div.area.clearfix > div.msg_list > div > div.newsdata_wrap > ul > li > div > div > div > div.news_title > h3 > a" id="href-css" class="enter front"/></td>
+    			<td><label>发布时间样式选择器:</label>
+            <input type="text" value="#epContentLeft > div.post_time_source"  id="time-css" class="enter"/></td>
+    		</tr>
+    		<tr>
+    			<td><label>新闻来源样式选择器:</label>
+              <input type="text" value="#ne_article_source" id="src-css" class="enter front"/></td>
+    			<td><label>新闻内容样式选择器:</label>
+              <input type="text" value="#endText"  id="content-css" class="enter"/></td>
+    		</tr>
+    		<tr>
+    			<td><label for="nextpage-format">获取更多新闻列表方式:</label>
+             <select id='nextpage-format'>
+               <option>下拉加载</option>
+               <option>点击按钮加载</option>
+             </select></td>
+    			<td><label>爬取页面数:</label>
+              <input type="text" value="0"  id="deep_num" class="enter"/></td>
+    		</tr>
+    	</table>
+      <!-- <div class="item-box">
         <ul class="enter-box">
           <li>
             <label>爬虫名称:</label>
@@ -50,9 +88,12 @@
               <input type="text" value="0"  id="deep_num" class="enter"/>
           </li>
         </ul>
-      </div>
+      </div> -->
 
-      <span id="start">创建爬虫</span>
+      <div class="btn-box">
+        <div id="btn1">创建爬虫</div>
+        <div id="start">创建爬虫</div>
+      </div>
     </div>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="/javascripts/news.js"></script>
