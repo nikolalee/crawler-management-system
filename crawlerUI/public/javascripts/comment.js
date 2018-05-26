@@ -10,6 +10,10 @@ $(document).ready(function(){
 			$('#response-box').css('display','none');
 		}
 	})
+	//menu animation
+	$('#menu').add('#create').mouseout(function(){
+		menuList.css('height','0');
+	})
 	$('#create').add('#menu').mouseover(function(){
 		menuList.css('height','162px');
 		
@@ -21,10 +25,7 @@ $(document).ready(function(){
 	$('.btn-box').mouseout(function(){
 		$('#start').css('top','-50px');
 	})
-	//menu animation
-	$('#menu').add('#create').mouseout(function(){
-		menuList.css('height','0');
-	})
+	
 	btn.on('click',function(){
 		get_data(data);
 		var flag;

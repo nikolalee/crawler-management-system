@@ -77,9 +77,11 @@ nav ul li a{
     cursor: pointer;
     line-height: 54px;	
     text-align: center;
+    color: #fff;
 }
 nav ul li a:hover{
 	text-decoration: underline;
+	color: #000;
 }
 .icon-pachong::before{
 	font-size: 20px;
@@ -194,7 +196,7 @@ nav ul li a:hover{
 }
 .results{
 	display: inline-block;
-	width: 80%;
+	width: 50%;
 	height: 18px;
 	line-height: 18px;
 	border-radius: 2px;
@@ -290,8 +292,47 @@ nav ul li a:hover{
 	margin: 10px 0;
 }
 .todo-color{
-	color: yellow;
+	color: #67670e;
 }
 .run-color{
 	color: green;
+}
+table.table-item{
+	width: 100%;
+}
+table.table-item tr{
+	width: 100%;
+}
+table.table-item tr td{
+	width: 20%;
+	background-color: #333;
+	color: #fff;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.first-tit{
+	border-radius: 5px 0 0 0;
+}
+.last-tit{
+	border-radius: 0 5px 0 0;
+}
+.pro-item{
+	width: 100%;
+}
+.pro-item table{
+	width: 100%;
+}
+.pro-item table tr{
+	width: 100%;
+	border-top: 1px solid gray;
+}
+.pro-item table tr td{
+	width: 20%;
+	font-family: Agenda-Light, sans-serif;
+	background-color: #eee;
+	color: #000;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
 }

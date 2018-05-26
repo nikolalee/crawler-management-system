@@ -6,13 +6,20 @@ $(document).ready(function(){
     var code = $('#code');
     var download = $('#download');
     var url = 'http://localhost:5000/spiderweb/counter';
+    var menuList = $('#menu');
+    //menu animation
+    $('#menu').add('#create').mouseout(function(){
+        menuList.css('height','0');
+    })
+    $('#create').add('#menu').mouseover(function(){
+        menuList.css('height','162px');
+    })
     if($('#crawl-type').html() == ""){
         $('#crawl-type').html(type);
     }
     if($('#crawl-name').html() == ""){
         $('#crawl-name').html(project_name);
     }
-    change_btn_color();
     bindEvent();
     get_counter();
     refresh_num();
@@ -35,12 +42,6 @@ $(document).ready(function(){
             var href = "/result_download?project_name="+project_name+"&type="+type;
             location.href = href;        
         });
-    }
-    function change_btn_color(){
-        overview.css('background-color',"#e3e3e3");
-        result.css('background-color',"#fff");
-        code.css('background-color',"#fff");
-        download.css('background-color',"#fff");
     }
     function refresh_num(){
         $.ajax({

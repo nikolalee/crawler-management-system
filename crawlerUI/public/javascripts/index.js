@@ -3,8 +3,8 @@ $(document).ready(function(){
 	// console.log($log);
 	// var logArea = $('#log_area');
 	var newProject = $('#create');
-	var runningArea = $('#items');
-	var todoArea = $('#todoArea');
+	var runningArea = $('#items table');
+	var todoArea = $('#todoArea table');
 	var menuList = $('#menu');
 	//bind log event
 	get_info();
@@ -16,50 +16,50 @@ $(document).ready(function(){
 		menuList.css('height','162px');
 		
 	})
-	$('#running-project').add('#recent-project').on('click','ul > li > span.log_toggle',function(event){
-		var target = $(event.target);
-		var logArea = target.parent().parent().parent().children('.log');
-		if (logArea.css('display') == 'none'){
-			logArea.css('display','block');
-			// console.log('hi');
-		}else{
-			logArea.css('display','none');
-			// console.log('kk');
-		}
-	})
+	// $('#running-project').add('#recent-project').on('click','table > tr > td > span.log_toggle',function(event){
+	// 	var target = $(event.target);
+	// 	var logArea = target.parent().parent().parent().children('.log');
+	// 	if (logArea.css('display') == 'none'){
+	// 		logArea.css('display','block');
+	// 		// console.log('hi');
+	// 	}else{
+	// 		logArea.css('display','none');
+	// 		// console.log('kk');
+	// 	}
+	// })
 	//bind delete event
-	$('#recent-project').on('click','ul > li > span.del',function(event){
+	$('#recent-project').on('click','table > tr > td > span.del',function(event){
 		var target = $(event.target);
-		var oDiv = target.parent().parent().parent();
+		var oDiv = target.parent().parent();
 		var name = oDiv.find('.pro-name').eq(0).html();
 		sure_to_delete(name);
 	})
 	//bind delete event
-	$('#running-project').on('click','ul > li > span.del',function(event){
+	$('#running-project').on('click','table > tr > td > span.del',function(event){
 		alert("请先暂停该爬虫.");
 	})
 	//bind run event
-	$('#running-project').add('#recent-project').on('click','ul > li > span.run',function(event){
+	$('#running-project').add('#recent-project').on('click','table > tr > td > span.run',function(event){
 		var target = $(event.target);
-		var oDiv = target.parent().parent().parent();
+		var oDiv = target.parent().parent();
 		var name = oDiv.find('.pro-name').eq(0).html();
 		console.log(name);
 		run(name);
 		get_info();
 	})
 	//bind stop event
-	$('#running-project').add('#recent-project').on('click','ul > li > span.stop',function(event){
+	$('#running-project').add('#recent-project').on('click','table > tr > td > span.stop',function(event){
 		var target = $(event.target);
-		var oDiv = target.parent().parent().parent();
+		var oDiv = target.parent().parent();
 		var name = oDiv.find('.pro-name').eq(0).html();
 		console.log(name);
 		stop(name);
 		get_info();
 	})
 	//bind results event
-	$('#running-project').add('#recent-project').on('click','ul > li > span.results',function(event){
+	$('#running-project').add('#recent-project').on('click','table > tr > td > span.results',function(event){
 		var target = $(event.target);
-		var oDiv = target.parent().parent().parent();
+		var oDiv = target.parent().parent();
 		var name = oDiv.find('.pro-name').eq(0).html();
 		var type = window.localStorage.getItem(name);
 		//for test
@@ -103,29 +103,45 @@ $(document).ready(function(){
 		// return item;
 	}
 	function addNodeRun(web,name,status){
-		var appendPart = '<div class="item-box">'+
-		'<ul class="ul_item">'+
-		'<li class="item item_color" ><span>'+web+'</span></li>'+
-		'<li class="item item_color" ><span class="pro-name">'+name+'</span></li>'+
-		'<li class="item item_color" >'+
-		'<span class="run-color">'+status+'</span></li>'+
-	  	'<li class="item item_color btn" ><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></li>'+
-	  	'<li class="item item_color btn" ><span class="results " >结果</span></li>'+
-	  	'</ul>'+
-  		'</div>';
+		var appendPart =
+		'<tr class="tr-item">'+
+            '<td >'+web+'</td>'+
+            '<td ><span class="pro-name">'+name+'</span></td>'+
+            '<td ><span class="run-color">'+status+'</span></td>'+
+            '<td class="btn"><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></td>'+
+            '<td class="btn"><span class="results " >结果</span></td>'+
+          '</tr>';
+		// var appendPart = '<div class="item-box">'+
+		// '<ul class="ul_item">'+
+		// '<li class="item item_color" ><span>'+web+'</span></li>'+
+		// '<li class="item item_color" ><span class="pro-name">'+name+'</span></li>'+
+		// '<li class="item item_color" >'+
+		// '<span class="run-color">'+status+'</span></li>'+
+	 //  	'<li class="item item_color btn" ><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></li>'+
+	 //  	'<li class="item item_color btn" ><span class="results " >结果</span></li>'+
+	 //  	'</ul>'+
+  // 		'</div>';
   		runningArea.append(appendPart);
 	}
 	function addNodeTodo(web,name,status){
-		var appendPart = '<div class="item-box">'+
-		'<ul class="ul_item">'+
-		'<li class="item item_color" ><span>'+web+'</span></li>'+
-		'<li class="item item_color" ><span class="pro-name">'+name+'</span></li>'+
-		'<li class="item item_color" >'+
-		'<span class="todo-color">'+status+'</span></li>'+
-	  	'<li class="item item_color btn" ><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></li>'+
-	  	'<li class="item item_color btn" ><span class="results " >结果</span></li>'+
-	  	'</ul>'+
-  		'</div>';
+		var appendPart =
+		'<tr class="tr-item">'+
+            '<td >'+web+'</td>'+
+            '<td ><span class="pro-name">'+name+'</span></td>'+
+            '<td ><span class="todo-color">'+status+'</span></td>'+
+            '<td class="btn"><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></td>'+
+            '<td class="btn"><span class="results " >结果</span></td>'+
+          '</tr>';
+		// var appendPart = '<div class="item-box">'+
+		// '<ul class="ul_item">'+
+		// '<li class="item item_color" ><span>'+web+'</span></li>'+
+		// '<li class="item item_color" ><span class="pro-name">'+name+'</span></li>'+
+		// '<li class="item item_color" >'+
+		// '<span class="todo-color">'+status+'</span></li>'+
+	 //  	'<li class="item item_color btn" ><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></li>'+
+	 //  	'<li class="item item_color btn" ><span class="results " >结果</span></li>'+
+	 //  	'</ul>'+
+  // 		'</div>';
   		todoArea.append(appendPart);
 	}
 	function stop(name){
