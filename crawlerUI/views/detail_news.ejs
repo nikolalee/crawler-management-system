@@ -3,16 +3,18 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/detail_news.css' />
+    <link rel="stylesheet" href='/nav_font/iconfont.css' />
   </head>
   <body>
   	<nav>
-  		<a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
-      <ul>
-        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
-        <li><a href="http://localhost:3000/comment">评论爬虫创建</a></li>
-        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
+      <a id="home" href="http://localhost:3000/index"><i class="iconfont icon-pachong"></i>爬虫管理系统</a>
+      <a id="create">爬虫创建</a>
+      <ul id="menu">
+        <li><a href="http://localhost:3000"><i class="iconfont icon-NEWS-copy"></i>新闻爬虫</a></li>
+        <li><a href="http://localhost:3000/comment"><i class="iconfont icon-comment"></i>评论爬虫</a></li>
+        <li><a href="http://localhost:3000/forum"><i class="iconfont icon-luntan"></i>论坛爬虫</a></li>
       </ul>
-  	</nav>
+    </nav>
     <div id="box">
       <p class="title">爬虫名称: <span><%= data[0].project_name %></span></p>
       <p class="title">新闻标题: <a href="<%= data[0].url %>"><%= data[0].news_title %></a></p>
@@ -25,7 +27,7 @@
       </div>
     </div>
   	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-  	<!-- <script src="/javascripts/result_show.js"></script> -->
+  	<script src="/javascripts/detail.js"></script>
   </body>
 </html>
 

@@ -3,42 +3,45 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/result_show.css' />
+    <link rel="stylesheet" href='/nav_font/iconfont.css' />
+    <link rel="stylesheet" href='/font_menu/iconfont.css' />
   </head>
   <body>
   	<nav>
-  		<a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
-      <ul>
-        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
-        <li><a href="http://localhost:3000/comment">评论爬虫创建</a></li>
-        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
+      <a id="home" href="http://localhost:3000/index"><i class="iconfont icon-pachong"></i>爬虫管理系统</a>
+      <a id="create">爬虫创建</a>
+      <ul id="menu">
+        <li><a href="http://localhost:3000"><i class="iconfont icon-NEWS-copy"></i>新闻爬虫</a></li>
+        <li><a href="http://localhost:3000/comment"><i class="iconfont icon-comment"></i>评论爬虫</a></li>
+        <li><a href="http://localhost:3000/forum"><i class="iconfont icon-luntan"></i>论坛爬虫</a></li>
       </ul>
-  	</nav>
+    </nav>
     <div class="side">
-      <div class="menu ">主菜单</div>
-      <div class="menu-child" id="overview">总览</div>
-      <div class="menu-child" id="result">爬取结果</div>
-      <div class="menu">开发者</div>
-      <div class="menu-child" id="code">爬虫源码</div>
-      <div class="menu">数据发布&导出</div>
-      <div class="menu-child bottom" id="download">导出到文件</div>
+      <ul>
+        <li id="overview" title="总览" class="item-color "><i class="iconfont icon-zonglan"></i></li>
+        <li id="result" title="爬取结果" class="item-color active"><i class="iconfont icon-jieguoliulan"></i></li>
+        <li id="code" title="爬虫源码" class="item-color"><i class="iconfont icon-yuanma"></i></li>
+        <li id="download" title="导出到文件" class="item-color"><i class="iconfont icon-xiazai"></i></li>
+      </ul>
     </div>
   	<div id="container">
-      <ul class="item">
-        <li><%= head[0] %></li>
-        <li><%= head[1] %></li>
-        <li><%= head[2] %></li>
-        <li>详情</li>
-      </ul>
+      <table class="item ">
+        <tr>
+          <th class="first-tit "><%= head[0] %></th>
+          <th ><%= head[1] %></th>
+          <th ><%= head[2] %></th>
+          <th class="last-tit ">详情</th>
+        </tr>
       <% for(var i = 0;i < data.length;i++){ %>
-      <ul class="item">
-       <!--  <li><span>title</span></li>
-        <li><span>url</span></li> -->
-        <li class="author"><%= data[i].comment_author %></li>
-        <li><%= data[i].content %></li>
-        <li class="time"><%= data[i].publish_time %></li>
-        <li><span  class="details">详情</span></li>
-      </ul> 
+      <tr class="item">
+        <td class="author"><%= data[i].comment_author %></td>
+        <td><%= data[i].content %></td>
+        <td class="time"><%= data[i].publish_time %></td>
+        <td><span  class="details">详情</span></td>
+      </tr> 
       <% } %>
+      </table>
+      
     </div>
   	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   	<script src="/javascripts/result_show.js"></script>

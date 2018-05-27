@@ -6,7 +6,14 @@ $(document).ready(function(){
     var result = $('#result');
     var code = $('#code');
     var download = $('#download');
-    change_btn_color();
+    var menuList = $('#menu');
+    //menu animation
+    $('#menu').add('#create').mouseout(function(){
+        menuList.css('height','0');
+    })
+    $('#create').add('#menu').mouseover(function(){
+        menuList.css('height','162px');
+    })
     bindEvent();
     var url = 'http://localhost:5000/debug/'+project_name+'/get';
     $.ajax({
@@ -42,12 +49,6 @@ $(document).ready(function(){
             var href = "/result_download?project_name="+project_name+"&type="+type;
             location.href = href;        
         });
-    }
-    function change_btn_color(){
-        code.css('background-color',"#e3e3e3");
-        overview.css('background-color',"#fff");
-        result.css('background-color',"#fff");
-        download.css('background-color',"#fff");
     }
     
 })

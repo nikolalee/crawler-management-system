@@ -5,7 +5,15 @@ $(document).ready(function(){
     var result = $('#result');
     var code = $('#code');
     var download = $('#download');
-    change_btn_color();
+    var menuList = $('#menu');
+    //menu animation
+    $('#menu').add('#create').mouseout(function(){
+        menuList.css('height','0');
+    })
+    $('#create').add('#menu').mouseover(function(){
+        menuList.css('height','162px');
+    })
+    // change_btn_color();
     bindEvent();
     function bindEvent(){
         overview.on('click',function(){
@@ -23,7 +31,7 @@ $(document).ready(function(){
             var href = "/result_download?project_name="+project_name+"&type="+type;
             location.href = href;        
         });
-        $('#container').on('click','ul > li > span.details',function(event){
+        $('#container').on('click','tr > td > span.details',function(event){
             var target = $(event.target);
             var oDiv = target.parent().parent();
             var url = "";
@@ -43,12 +51,6 @@ $(document).ready(function(){
             
             location.href = url;
         })
-    }
-    function change_btn_color(){
-        result.css('background-color',"#e3e3e3");
-        overview.css('background-color',"#fff");
-        code.css('background-color',"#fff");
-        download.css('background-color',"#fff");
     }
     
 })

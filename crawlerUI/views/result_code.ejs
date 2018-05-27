@@ -3,24 +3,26 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/result_code.css' />
+    <link rel="stylesheet" href='/nav_font/iconfont.css' />
+    <link rel="stylesheet" href='/font_menu/iconfont.css' />
   </head>
   <body>
   	<nav>
-  		<a id="home" href="http://localhost:3000/index">爬虫管理系统</a>
-      <ul>
-        <li><a href="http://localhost:3000/">新闻爬虫创建<a></li>
-        <li><a href="http://localhost:3000/comment">评论爬虫创建</a></li>
-        <li><a href="http://localhost:3000/forum">论坛爬虫创建</a></li>
+      <a id="home" href="http://localhost:3000/index"><i class="iconfont icon-pachong"></i>爬虫管理系统</a>
+      <a id="create">爬虫创建</a>
+      <ul id="menu">
+        <li><a href="http://localhost:3000"><i class="iconfont icon-NEWS-copy"></i>新闻爬虫</a></li>
+        <li><a href="http://localhost:3000/comment"><i class="iconfont icon-comment"></i>评论爬虫</a></li>
+        <li><a href="http://localhost:3000/forum"><i class="iconfont icon-luntan"></i>论坛爬虫</a></li>
       </ul>
-  	</nav>
+    </nav>
     <div class="side">
-      <div class="menu ">主菜单</div>
-      <div class="menu-child" id="overview">总览</div>
-      <div class="menu-child" id="result">爬取结果</div>
-      <div class="menu">开发者</div>
-      <div class="menu-child" id="code">爬虫源码</div>
-      <div class="menu">数据发布&导出</div>
-      <div class="menu-child bottom" id="download">导出到文件</div>
+      <ul>
+        <li id="overview" title="总览" class="item-color"><i class="iconfont icon-zonglan"></i></li>
+        <li id="result" title="爬取结果" class="item-color"><i class="iconfont icon-jieguoliulan"></i></li>
+        <li id="code" title="爬虫源码" class="item-color active"><i class="iconfont icon-yuanma"></i></li>
+        <li id="download" title="导出到文件" class="item-color"><i class="iconfont icon-xiazai"></i></li>
+      </ul>
     </div>
   	<div id="container">
       
