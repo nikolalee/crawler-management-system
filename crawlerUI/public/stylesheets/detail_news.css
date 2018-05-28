@@ -10,7 +10,7 @@ li{
 }
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-	background-color: #dbe1e8;
+	background-color: #f6f6f6;
 
 }
 nav{
@@ -89,10 +89,6 @@ nav ul li a:hover{
     color: #f113ee;
 }
 #box{
-	/* position:absolute;
-	top: 40px;
-	bottom: 0;
-	left: 0; */
 	height: auto;
 	width: 100%;
 	padding: 30px 60px;
@@ -102,18 +98,26 @@ p{
 	width: 60%;
 	height: 30px;
 	line-height: 30px;
-	background-color:#ccd0d4;
 	margin-bottom: 20px;
 	padding-left: 10px;
-	border-radius: 3px;
+	border-bottom: 1px solid gray;
+	transition: all 0.3s ease;
 }
 .title{
-	font-size: 18px;
-	font-weight: bold;
+	font-size: 16px;
+	color: #444;
+}
+.title a{
+	color: #1a1a1a;
+	text-decoration: underline;
 }
 p span{
 	font-size: 14px;
-	font-weight: lighter;
+	color: #1a1a1a;
+}
+p:hover{
+	border-bottom: 1px solid red;
+	color: blue;
 }
 #src{
 	margin-right: 20px;
@@ -130,10 +134,13 @@ div#content{
 	background-color: #fff;
 
 }
+div#content:hover{
+	color: #000;
+}
 div#content pre{
 	white-space: pre-wrap;
 	word-wrap: break-word
 }
 .text{
-	width: 15%;
+	width: 80px;
 }

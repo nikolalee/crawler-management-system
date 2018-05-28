@@ -10,7 +10,7 @@ li{
 }
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-	background-color: #dbe1e8;
+	background-color: #f6f6f6;
 }
 nav{
     width: 100%;
@@ -92,22 +92,26 @@ nav ul li a:hover{
 	padding: 30px 60px;
 	box-sizing: border-box;
 }
+.title{
+    font-size: 16px;
+    color: #444;
+}
 p{
 	width: 40%;
 	height: 30px;
 	line-height: 30px;
-	background-color:#ccd0d4;
+    box-sizing:border-box;
 	margin-bottom: 20px;
 	padding-left: 10px;
-	border-radius: 3px;
-}
-.title{
-	font-size: 18px;
-	font-weight: bold;
+    border-bottom: 1px solid gray;
 }
 p span{
-	font-size: 14px;
-	font-weight: lighter;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+p:hover{
+    border-bottom: 1px solid red;
+    color: blue;
 }
 #src{
 	margin-right: 20px;
@@ -123,8 +127,11 @@ div.content{
 	border: 1px solid #736e6e;
 	background-color: #fff;
 }
+div#content:hover{
+    color: #000;
+}
 .text{
-	width: 15%;
+	width: 80px;
 	margin-top: 20px;
 }
 .last{
