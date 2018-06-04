@@ -16,6 +16,9 @@ deep_num = '__DEEP_NUM__'
 from pyspider.libs.base_handler import *
 
 import sys, time, pymysql,time,re
+from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from pyquery import PyQuery as pq
 
 class Handler(BaseHandler):
     crawl_config = {
@@ -32,6 +35,7 @@ class Handler(BaseHandler):
     }
     def __init__(self):
         self.url = start_url
+        self.count = 1
         
 
     @every(minutes=24 * 60)
@@ -39,45 +43,121 @@ class Handler(BaseHandler):
         self.crawl(self.url,fetch_type="js", callback=self.index_page)
 
     def index_page(self,response):
-        print("1")
-        url = response.url+"#more"
         if nextpage_format == "move":
-            script = '''function(){
-                var num = '''+str(deep_num)+''';
-                var count = 0;
-                var timer = setInterval(function(){
-                    window.scrollTo(0,document.body.scrollHeight);
-                    count++;
-                    if (count > num){
-                        clearInterval(timer);
-                        }            
-                    },600)
-                    return 123;
-                } ''';
+            self.more_move(response)
         elif nextpage_format == "click":
-            script = """function(){
-                var num = """+str(deep_num)+""";
-                var count = 0;
-                var timer = setInterval(function(){
-                    $('"""+nextpage_css+"""')[0].click();
-                    count++;
-                    if(count > num){
-                        clearInterval(timer);
-                    }
-                },100)
-                return 12;
-            }"""    
-        self.crawl(url,callback=self.phantomjs_parser,fetch_type="js",js_script=script)
+            self.more_click(response) 
+        elif nextpage_format == "btn":
+            self.more_btn(response)
         
-    def phantomjs_parser(self,response):
-        print("3")
-        print(response.js_script_result)
+    def more_move(self,response):
+        url = response.url
+        driver = webdriver.PhantomJS()
+        driver.get(url)
+        js = " window.scrollTo(0,document.body.scrollHeight);console.log(12)"
+        for i in range(0,int(deep_num)):
+            print(i)
+            time.sleep(0.3)
+            driver.execute_script(js)
+        content = driver.page_source.encode('utf-8')
+        pyq = pq(content)
+        items = pyq(href_css).items()
+        self.phantomjs_parser(items)
+    
+    def more_click(self,response):
+        url = response.url
+        driver = webdriver.PhantomJS()
+        driver.get(url)
+        for i in range(0,int(deep_num)):
+            print(i)
+            time.sleep(0.3)
+            if(driver.find_element_by_css_selector(nextpage_css).is_displayed()):
+                driver.find_element_by_css_selector(nextpage_css).click()
+            else:
+                break
+        content = driver.page_source
+        pyq = pq(content)
+        print(pyq(nextpage_css).text())
+        items = pyq(href_css).items()
+        self.phantomjs_parser(items)
+        
+    def more_btn(self,response):
         items = response.doc(href_css).items()
+        self.phantomjs_parser(items)
+        print(1)
+        self.back(response)
+        
+            
+            
+    def back(self,response):
+        url = self.get_nextpage_url(response)
+        time.sleep(0.1)
+        print(2)
+        if url:
+            if self.count < int(deep_num):
+                print(self.count)
+                self.count = self.count + 1
+                time.sleep(1)
+                self.crawl(url,fetch_type="js", callback=self.more_btn)
+            else:
+                print("too much")
+        else:
+            print('wrong url')
+            
+            
+    def get_nextpage_url(self,response):
+        items = response.doc(nextpage_css).items()
+        next_url = ""
+        for item in items:
+            if item.text().find('下') is not -1:
+                next_url = item.attr.href
+                print(next_url)
+                break
+            elif item.text().find('后') is not -1:
+                next_url = item.attr.href
+                print(next_url)
+                break
+            elif item.text().find('>') is not -1:
+                next_url = item.attr.href
+                print(next_url)
+                break
+        return next_url
+      
+     
+                    
+        
+        
+            
+    def phantomjs_parser(self,items):
+        print("3")
+        #print(response.js_script_result)
+        #items = response.doc(href_css).items()
+        count = 0
         for item in items:
             url = item.attr('href')
+            url = self.sohu_url(url)
             print(url)
-            time.sleep(0.2)
+            count = count + 1
+            if(count >= 10):
+                count = 0
             self.crawl(url,callback=self.detail_page)
+            
+    def sohu_url(self,url):
+        if url.find('http') == -1:
+            head = start_url.split(':')[0]
+            if url.find(':') == -1 and url.find('//')==-1:
+                domain = self.get_domain()
+                url = head +"://"+domain+'/'+ url
+            elif url.find(':') == -1:
+                url = head +':'+ url
+            else:
+                url = head + url
+        return url
+    
+    def get_domain(self):
+        urls = self.url.split('/')
+        return urls[2]
+                
 
     @config(age=10 * 24 * 60 * 60)
     def detail_page(self, response):
@@ -87,9 +167,14 @@ class Handler(BaseHandler):
         result['title'] = response.doc(title_css).text()
        
         result['src'] = response.doc(src_css).text()
-      
-        result['time'] = response.doc(time_css).text()
+        if len(result['src']) > 127:
+            result['src'] = ''
+            
+        Time = response.doc(time_css).clone()
+        Time.find(':nth-child(n)').remove()
+        result['time'] = Time.text()
         print(result['time'])
+        
         contentArea = response.doc(content_css)
         result['content'] = response.doc(content_css).text();
         if result['content'] == "":
