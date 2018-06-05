@@ -59,6 +59,7 @@ class Handler(BaseHandler):
     }
     def __init__(self):
         self.url = start_url
+        self.count = 0
         
     @every(minutes=24 * 60)
     def on_start(self):
@@ -77,58 +78,84 @@ class Handler(BaseHandler):
             time.sleep(0.2)
             print("hi"+str(i))
             driver.find_element_by_css_selector(nextpage_tag).click()
-            content = driver.page_source.encode('utf-8')
-            iframe = pq(content)
-            items = iframe(comment_box_css).items()
-            self.deal_item(items)
+        content = driver.page_source.encode('utf-8')
+        iframe = pq(content)
+        items = iframe(comment_box_css).items()
+        self.deal_item(items)
 
     def index_page(self,response):
         print("1")
-        time.sleep(5)
-        url = response.url+"#more"
         if more_type == "more_move":
-            script = '''function(){
-                var num = '''+str(deep_num)+''';
-                var count = 0;
-                var timer = setInterval(function(){
-                    window.scrollTo(0,document.body.scrollHeight);
-                    count++;
-                    if (count > num){
-                        clearInterval(timer);
-                        }            
-                    },600)
-                    return 123;
-                } ''';
-            self.crawl(url,callback=self.phantomjs_parser,fetch_type="js",js_script=script)
+            self.more_move(response)
         elif more_type == "more_click":
-            script = """function(){
-                var num = """+str(deep_num)+""";
-                var count = 0;
-                var timer = setInterval(function(){
-                    $('"""+nextpage_tag+"""')[0].click();
-                    count++;
-                    if(count > num){
-                        clearInterval(timer);
-                    }
-                },10)
-                return 123;
-            }""";
-            self.crawl(url,callback=self.phantomjs_parser,fetch_type="js",js_script=script)
-           
-            
+            self.more_click(response)
         elif more_type == "more_list":
-            call_func = self.mid_page
-            self.get_nextpage_url(response, nextpage_tag, call_func, step)
-        else:
-            print("undefined type")
-            return        
+            items = response.doc(nextpage_tag).items()
+            next_url = ""
+            for item in items:
+                if item.text().find(nextpage_name) is not -1:
+                    next_url = item.attr.href
+                    break
+            if not next_url:
+                self.list_click(response)
+            else:
+                print(next_url)
+                call_func = self.mid_page
+                self.get_nextpage_url(response, nextpage_tag, call_func, step)
+       
     
-    def phantomjs_parser(self,response):
-        print("3")
-        time.sleep(6)
-        print(response.js_script_result)
-        items = response.doc(comment_box_css).items()
+    def more_move(self,response):
+        url = response.url
+        driver = webdriver.PhantomJS()
+        driver.get(url)
+        js = " window.scrollTo(0,document.body.scrollHeight);console.log(12)"
+        for i in range(0,int(deep_num)):
+            print(i)
+            time.sleep(0.3)
+            driver.execute_script(js)
+        content = driver.page_source.encode('utf-8')
+        pyq = pq(content)
+        items = pyq(href_css).items()
         self.deal_item(items)
+    
+    def more_click(self,response):
+        url = response.url
+        driver = webdriver.PhantomJS()
+        driver.get(url)
+        for i in range(0,int(deep_num)):
+            print(i)
+            time.sleep(0.3)
+            if(driver.find_element_by_css_selector(nextpage_tag).is_displayed()):
+                driver.find_element_by_css_selector(nextpage_tag).click()
+            else:
+                break
+        content = driver.page_source
+        pyq = pq(content)
+        items = pyq(comment_box_css).items()
+        self.deal_item(items)
+        
+    def list_click(self,response):
+        url = response.url
+        driver = webdriver.PhantomJS()
+        driver.get(url)
+        content = driver.page_source
+        pyq = pq(content)
+        items = pyq(comment_box_css).items()
+        self.deal_item(items)
+        for i in range(0,int(deep_num)):
+            print("deep"+str(i))
+            time.sleep(0.3)
+            if pyq(nextpage_tag).text() != "":
+                driver.find_element_by_css_selector(nextpage_tag).click()
+                time.sleep(2)
+                content = driver.page_source
+                pyq = pq(content)
+                print(pyq(nextpage_tag).text())
+                items = pyq(comment_box_css).items()
+                self.deal_item(items)
+            else:
+                break
+        
     
     def deal_item(self,items):
         for item in items:
@@ -139,6 +166,8 @@ class Handler(BaseHandler):
             if author == "":
                 result['comment_author'] = item.children('div > span.author > span.from').text()
                 print(22)
+                if result['comment_author'] == "":
+                    result['comment_author'] = item.children('div > p.w-username')
             else:
                 result['comment_author'] = author
             Time = item(time_css).clone()
@@ -174,7 +203,7 @@ class Handler(BaseHandler):
         count = 0
         for item in items:
             count = count + 1
-            print(count)
+            #print(count)
             result = {}
             result['user'] = item.children(res_user_css).text()
             #print(result['user'])
@@ -317,7 +346,7 @@ class Handler(BaseHandler):
             text = ""
         conn = pymysql.connect(host='127.0.0.1', port=3306, user='repository', passwd='repository', db='repository', charset='utf8')
         cur = conn.cursor()
-        cur.execute("select * from comments where comment_author = %s and content=%s and publish_time=%s", (result['comment_author'],result['content'],result['time']))
+        cur.execute("select * from comments where comment_author = %s and content=%s and project_name=%s", (result['comment_author'],result['content'],project_name))
         rows = cur.fetchall()
         if len(rows):
             cur.close()
@@ -347,10 +376,11 @@ class Handler(BaseHandler):
             cur.close()
             conn.close()
             return
-        cur.execute("insert into comment_reply(author,content,reply_user,reply_time,reply_content,crawl_time,text) values(%s,%s,%s,%s,%s,%s,%s)", (result['author'],result['content'],result['user'],result['res_time'], result['res_content'],result['crawl_time'],text))
+        cur.execute("insert into comment_reply(author,content,reply_user,reply_time,reply_content,crawl_time,text,project_name) values(%s,%s,%s,%s,%s,%s,%s,%s)", (result['author'],result['content'],result['user'],result['res_time'], result['res_content'],result['crawl_time'],text,project_name))
         conn.commit()
         cur.close()
         conn.close()
+
 
 
 
