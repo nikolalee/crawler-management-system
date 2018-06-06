@@ -38,6 +38,7 @@ import requests
 from bs4 import BeautifulSoup
 from pyquery import PyQuery as pq
 from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 
@@ -52,10 +53,13 @@ class Handler(BaseHandler):
             "Referer": start_url
         }
     }
-
+    def __init__(self):
+        self.url = start_url
+        self.count = 1
+    
     @every(minutes=24 * 60)
     def on_start(self):
-        self.crawl(start_url,callback=self.index_page)
+        self.crawl(start_url,fetch_type="js",callback=self.index_page)
 
     @config(age=10 * 24 * 60 * 60)
     def index_page(self, response):
@@ -70,20 +74,27 @@ class Handler(BaseHandler):
                 time.sleep(1)
                 self.get_nextpage_url(response,main_nextpage_tag,func,main_step," ",main_page_num)
             else:
-                num = main_page_num
-                self.list_page(response.url,num)
+                self.list_page(response)
             
     #通过css得到下一页的url    
     def get_next_url(self,items):
+        print(1)
         next_url = ""
+        count = 0
         for item in items:
+            print(count)
+            count = count +1
             if item.text().find(nextpage_keyword) is not -1:
+                next_url = item.attr.href
+                print("next_url:"+next_url)
+                break
+            elif item.text().find('下') is not -1:
                 next_url = item.attr.href
                 print(next_url)
                 break
-            elif item.text().find('页') is not -1:
+            if item.text().find('&gt') is not -1:
                 next_url = item.attr.href
-                print(next_url)
+                print("next_url:"+next_url)
                 break
         return next_url 
         
@@ -95,31 +106,50 @@ class Handler(BaseHandler):
         return new_url
 
     #以requests实现爬取多个列表页
-    def list_page(self,url,num):
-        for i in range(1,int(num)):
-            time.sleep(3)
-            print(url)
+    def list_page(self,response):
+        url = response.url
+        print(url)
+        headers = {
+    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
+}
+        if self.count <= int(main_page_num):
             if url:
-                response = requests.get(url)
+                response = requests.get(url,headers=headers)
+                time.sleep(1.5)
                 pyq = pq(response.content)
+                self.count = self.count + 1
                 self.request_domain_page(pyq)
-                # print(pyq(nextpage_css).attr.href)
-                items = pyq(main_nextpage_tag).items()
-                url = self.get_next_url(items)
-                if url.find('http') == -1:
-                    head = self.get_head(start_url)
-                    url = head + url
             else:
                 print("wrong url")
-                break
+                return
+        else:
+            print('enough')
+            return
                 
     def request_domain_page(self,response):
         hrefs = response(href_css).items()
+        count = 0
         for item in hrefs:
+            print(count)
+            count = count +1
             url = item.attr.href
             if url.find('http') == -1:
                 url = self.get_head(start_url)+url
-            self.crawl(url,callback=self.main_page)
+            time.sleep(0.2)
+            self.crawl(url,callback=self.main_page,fetch_type="js")
+        items = response(main_nextpage_tag).items()
+        url = self.get_next_url(items)
+        if url == "":
+            return
+        if url.find('http') == -1:
+            head = self.get_head(start_url)
+            if url[0] == '/':
+                url = head + url
+            else:
+                url = head + '/' + url
+        print(url)
+        self.crawl(url,callback=self.list_page)
+              
         
     # 当self.crawl无法爬取到内容时
     def request(self,url,func,step):
@@ -173,10 +203,36 @@ class Handler(BaseHandler):
         self.on_result(result)
         flag = self.existed(response,sub_nextpage_tag)
         if flag:
-            func = self.mid
-            self.get_nextpage_url(response, sub_nextpage_tag,func,sub_step,result['title'],sub_page_num)
+            if start_url.find('xiaomi') is not -1:
+                self.xiaomi(response,result['title'])
+            else:
+                func = self.mid
+                self.get_nextpage_url(response,sub_nextpage_tag,func,sub_step,result['title'],sub_page_num)
         else:
             self.detail_page(response,result['title'])
+            
+    #适配小米
+    def xiaomi(self,response,title):
+        url = response.doc(sub_nextpage_tag).attr.href
+        items = response.doc(tie_box_css).items()
+        self.detail_mid_page(items,title)
+        headers = {
+    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
+}
+        for i in range(0,int(sub_page_num)):
+            if url:
+                response = requests.get(url,headers=headers)
+                time.sleep(1.5)
+                pyq = pq(response.content)
+                items = pyq(tie_box_css).items()
+                self.detail_mid_page(items,title)
+                url = pyq(sub_nextpage_tag).attr.href
+                if url.find('http') == -1:
+                    head = self.get_head(start_url)
+                    url = head + url
+            else:
+                print("wrong url")
+                break
     
     def existed(self,response,css):
         flag = 0;
@@ -273,7 +329,7 @@ class Handler(BaseHandler):
             elif len(nextpage_url_list) is 1:
                 url = nextpage_url_list[0] + str(i*int(step))
             print(url)
-            time.sleep(2)
+            time.sleep(1)
             self.crawl(url,callback=call_func,save={'title':title})
     
     def mid(self,response):
@@ -284,6 +340,9 @@ class Handler(BaseHandler):
     @config(priority=3)
     def detail_page(self, response,title):
         items = response.doc(tie_box_css).items()
+        self.detail_mid_page(items,title)
+        
+    def detail_mid_page(self,items,title):
         for item in items:
             result = {}
             result['tie_user'] = item.children(tie_user_css).text()
@@ -303,7 +362,7 @@ class Handler(BaseHandler):
         print(result)
         conn = pymysql.connect(host='127.0.0.1', port=3306, user='repository', passwd='repository', db='repository', charset='utf8')
         cur = conn.cursor()
-        cur.execute("select * from forum where title = %s ", result['title'])
+        cur.execute("select * from forum where title = %s and project_name = %s", (result['title'],project_name))
         rows = cur.fetchall()
         if len(rows):
             cur.close()
@@ -328,7 +387,7 @@ class Handler(BaseHandler):
             text = ""
         conn = pymysql.connect(host='127.0.0.1', port=3306, user='repository', passwd='repository', db='repository', charset='utf8')
         cur = conn.cursor()
-        cur.execute("select * from sub_forum where project_name = %s and tie_user = %s and publish_time = %s and tie_content=%s ", (project_name,result['tie_user'],result['publish_time'],result['tie_content']))
+        cur.execute("select * from sub_forum where tie_user = %s and publish_time = %s and tie_content=%s ", (result['tie_user'],result['publish_time'],result['tie_content']))
         rows = cur.fetchall()
         if len(rows):
             cur.close()

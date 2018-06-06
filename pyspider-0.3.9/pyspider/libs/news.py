@@ -101,8 +101,10 @@ class Handler(BaseHandler):
                 self.crawl(url,fetch_type="js", callback=self.more_btn)
             else:
                 print("too much")
+                return
         else:
             print('wrong url')
+            return
             
             
     def get_nextpage_url(self,response):
