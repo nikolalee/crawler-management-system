@@ -81,7 +81,7 @@ router.get('/', function(req, res, next) {
 		}
 	});
 	var sql3 = "SELECT crawl_time FROM forum";
-	connection.query(sql1,function (err, result) {
+	connection.query(sql3,function (err, result) {
     if(err){
       console.log('[SELECT ERROR] - ',err.message);
       return;
@@ -109,6 +109,7 @@ router.get('/', function(req, res, next) {
 				forum_counter.all = forum_counter.all + 1;
 			}else{
 				// console.log("all");
+				// console.log(forum_counter);
 				forum_counter.all = forum_counter.all + 1;
 			}
 		}
