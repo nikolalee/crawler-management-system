@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/detail_forum.css' />
+    <link rel="stylesheet" href='/nav_font/iconfont.css' />
+  </head>
+  <body>
+    <nav>
+      <a id="home" href="http://localhost:3000/index"><i class="iconfont icon-pachong"></i>爬虫管理系统</a>
+      <a id="create">爬虫创建</a>
+      <ul id="menu">
+        <li><a href="http://localhost:3000"><i class="iconfont icon-NEWS-copy"></i>新闻爬虫</a></li>
+        <li><a href="http://localhost:3000/comment"><i class="iconfont icon-comment"></i>评论爬虫</a></li>
+        <li><a href="http://localhost:3000/forum"><i class="iconfont icon-luntan"></i>论坛爬虫</a></li>
+      </ul>
+    </nav>
+    <div id="box">
+      <p ><span class="title">爬虫名称: </span><span><%= result[0].project_name %></span></p>
+      <p ><span class="title">帖子标题: </span><a href="<%= result[0].url %>"><%= result[0].title %></a></p>
+      <p ><span class="title">帖子作者: </span><span><%= result[0].author %></span></p>
+      <p ><span class="title">发布时间: </span><span><%= result[0].publish_time %></span></p>
+      <p ><span class="title">爬取时间: </span><span><%= result[0].crawl_time %></span></p>
+      
+      <p class="title text last">帖子内容:</p>
+      <div class="content">
+        <%= result[0].content %>
+      </div>
+      
+    </div>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/javascripts/detail.js"></script>
+  </body>
+</html>
+
