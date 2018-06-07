@@ -8,6 +8,8 @@ $(document).ready(function(){
 	var menuList = $('#menu');
 	//bind log event
 	get_info();
+	getCounter();
+	// getCounter();
 	//menu animation
 	$('#menu').add('#create').mouseout(function(){
 		menuList.css('height','0');
@@ -16,17 +18,7 @@ $(document).ready(function(){
 		menuList.css('height','162px');
 		
 	})
-	// $('#running-project').add('#recent-project').on('click','table > tr > td > span.log_toggle',function(event){
-	// 	var target = $(event.target);
-	// 	var logArea = target.parent().parent().parent().children('.log');
-	// 	if (logArea.css('display') == 'none'){
-	// 		logArea.css('display','block');
-	// 		// console.log('hi');
-	// 	}else{
-	// 		logArea.css('display','none');
-	// 		// console.log('kk');
-	// 	}
-	// })
+	
 	//bind delete event
 	$('#recent-project').on('click','table > tr > td > span.del',function(event){
 		var target = $(event.target);
@@ -69,7 +61,45 @@ $(document).ready(function(){
 		console.log(name);
 		getResults(name,type);
 	})
-	
+	function getCounter(){
+		$.ajax({
+			url:'/counter',
+			type:'GET',
+			success:function(item){
+				// console.log(item.news.all);
+				// var percent1 = (parseInt(item.news.all) / 2000.0)*253 + 'px';
+				$('.bar-1').height((parseInt(item.news.hour) / 2000.0)*253 + 'px');
+				$('.bar-1').attr('data-num',item.news.hour);
+				$('.bar-2').height((parseInt(item.news.day) / 2000.0)*253 + 'px');
+				$('.bar-2').attr('data-num',item.news.day);
+				$('.bar-3').height((parseInt(item.news.month) / 2000.0)*253 + 'px');
+				$('.bar-3').attr('data-num',item.news.month);
+				$('.bar-4').height((parseInt(item.news.all) / 2000.0)*253 + 'px');
+				$('.bar-4').attr('data-num',item.news.all);
+
+				$('.bar-5').height((parseInt(item.comment.hour) / 2000.0)*253 + 'px');
+				$('.bar-5').attr('data-num',item.comment.hour);
+				$('.bar-6').height((parseInt(item.comment.day) / 2000.0)*253 + 'px');
+				$('.bar-6').attr('data-num',item.comment.day);
+				$('.bar-7').height((parseInt(item.comment.month) / 2000.0)*253 + 'px');
+				$('.bar-7').attr('data-num',item.comment.month);
+				$('.bar-8').height((parseInt(item.comment.all) / 2000.0)*253 + 'px');
+				$('.bar-8').attr('data-num',item.comment.all);
+
+				$('.bar-9').height((parseInt(item.forum.hour) / 2000.0)*253 + 'px');
+				$('.bar-9').attr('data-num',item.forum.hour);
+				$('.bar-10').height((parseInt(item.forum.day) / 2000.0)*253 + 'px');
+				$('.bar-10').attr('data-num',item.forum.day);
+				$('.bar-11').height((parseInt(item.forum.month) / 2000.0)*253 + 'px');
+				$('.bar-11').attr('data-num',item.forum.month);
+				$('.bar-12').height((parseInt(item.forum.all) / 2000.0)*253 + 'px');
+				$('.bar-12').attr('data-num',item.forum.all);
+			},
+			fail:function(item){
+				console.log(item);
+			}
+		})
+	}
 	function get_info(){
 		// var item = [];
 		$.ajax({
@@ -111,16 +141,7 @@ $(document).ready(function(){
             '<td class="btn"><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></td>'+
             '<td class="btn"><span class="results " >结果</span></td>'+
           '</tr>';
-		// var appendPart = '<div class="item-box">'+
-		// '<ul class="ul_item">'+
-		// '<li class="item item_color" ><span>'+web+'</span></li>'+
-		// '<li class="item item_color" ><span class="pro-name">'+name+'</span></li>'+
-		// '<li class="item item_color" >'+
-		// '<span class="run-color">'+status+'</span></li>'+
-	 //  	'<li class="item item_color btn" ><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></li>'+
-	 //  	'<li class="item item_color btn" ><span class="results " >结果</span></li>'+
-	 //  	'</ul>'+
-  // 		'</div>';
+		
   		runningArea.append(appendPart);
 	}
 	function addNodeTodo(web,name,status){
@@ -132,16 +153,7 @@ $(document).ready(function(){
             '<td class="btn"><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></td>'+
             '<td class="btn"><span class="results " >结果</span></td>'+
           '</tr>';
-		// var appendPart = '<div class="item-box">'+
-		// '<ul class="ul_item">'+
-		// '<li class="item item_color" ><span>'+web+'</span></li>'+
-		// '<li class="item item_color" ><span class="pro-name">'+name+'</span></li>'+
-		// '<li class="item item_color" >'+
-		// '<span class="todo-color">'+status+'</span></li>'+
-	 //  	'<li class="item item_color btn" ><span class="action run">启动</span><span class="action stop">暂停</span><span class="action del">删除</span></li>'+
-	 //  	'<li class="item item_color btn" ><span class="results " >结果</span></li>'+
-	 //  	'</ul>'+
-  // 		'</div>';
+		
   		todoArea.append(appendPart);
 	}
 	function stop(name){
